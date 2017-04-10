@@ -330,7 +330,7 @@
  '(custom-enabled-themes (quote (tkf)))
  '(custom-safe-themes
    (quote
-    ("ce9be0dd2537e80f04fd5ecc739fb3dad2e2e413b2cf12df3dc7150a9d83c2a8")))
+    ("51805a74175b0f2d6af9c6ff5a23f1cc1a2055a64661065a137b7ed332527942" "6629b370b2488537cd1659d54e06e3bb78188239059fdee402852d298e7bd4bc" "2f361d968b8f013c64bc60e63926ddc7e29a9ebcabbbbc3760a54d2d98bb4fe5" "ce9be0dd2537e80f04fd5ecc739fb3dad2e2e413b2cf12df3dc7150a9d83c2a8")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
