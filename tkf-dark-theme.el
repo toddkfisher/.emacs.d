@@ -1,41 +1,41 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "#878890"
-      bgr                'dark
+(setq bg                 "#242429"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "grey10"
+      fg                 "#bfbfc1"
       kw                 fg
       cursor             "yellow"
-      fl-string          "MidnightBlue"
+      fl-string          "DarkSeaGreen3"
       string-slant       'normal
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
-      fl-func-fg         fg
-      fl-comment         "grey20"
+      fl-func-fg         "SkyBlue4"
+      fl-comment         "grey60"
       comment-slant      'italic
-      notice             "firebrick"
+      bgr                'dark
+      notice             "IndianRed3"
       paren-mismatch     notice
-      rgn-bg             "#A7A8AF"
+      rgn-bg             "SteelBlue4"
       isrch-bg           notice
       isrch-fg           "white"
       lzy-hi             isrch-bg
-      lzy-hi-wgt         'bold
-      lzy-hi-bgr         "#ac8c8c"
+      lzy-hi-bg          "#612429"
       grp-0              "red4"
       grp-1              "red3"
       grp-2              "red2"
-      hl-ln-underline    t
+      hl-ln              "gray25"
+      ;hl-ln-underline    t
       modeln-bg          "sandy brown"
-      modeln-fg          "grey15"
-      modeln-inactive-fg "gray75"
-      modeln-inactive-bg "#7A7C85"
-      hl-ln              modeln-inactive-bg
+      modeln-fg          "black"
+      modeln-inactive-fg "gray37"
+      modeln-inactive-bg "gray20"
       err                "dark red"
       bm-fg              "white"
       bm-bg              isrch-bg
-      par-match-fg       "white"
-      par-match-wgt      'normal
+      par-match-fg       "purple"
+      ;par-match-bg       "steel blue"
+      par-match-wgt      'bold
       lnum-fg            fl-comment
       lnum-bg            modeln-inactive-bg
       auctex-preview-bg  "DodgerBlue3"
@@ -57,15 +57,15 @@
       long-lines-bg      "#FFDEEB"
       win-num            "DodgerBlue1")
 
-(deftheme tkf
-  "tkf - Years of research and testing to optimize readability in light and dark conditions.")
+(deftheme tkf-dark
+  "tkf - dark")
 
 (custom-theme-set-variables
- 'tkf
+ 'tkf-dark
  )
 
 (custom-theme-set-faces
- 'tkf
+ 'tkf-dark
 
  `(default                               ((t (:inherit nil :background ,bg :foreground ,fg))))
  `(error                                 ((t (:inherit default :stipple nil :background ,bg  :foreground ,err :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
@@ -156,7 +156,7 @@
  `(font-lock-comment-delimiter-face      ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :slant ,comment-slant :foreground ,fl-comment))))
  `(font-lock-comment-face                ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :slant ,comment-slant :foreground ,fl-comment))))
  `(font-lock-constant-face               ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
- `(font-lock-function-name-face          ((t (:inherit default :foreground ,fl-func-fg :slant ,fl-func-slant :weight ,fl-func-wgt :underline ,fl-func-underline))))
+  `(font-lock-function-name-face          ((t (:inherit default :foreground ,fl-func-fg :slant ,fl-func-slant :weight ,fl-func-wgt :underline ,fl-func-underline))))
  `(font-lock-keyword-face                ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :foreground ,kw :slant ,kw-slant :weight ,kw-wgt))))
  `(font-lock-negation-char-face          ((t (:inherit default))))
  `(font-lock-regexp-grouping-backslash   ((t (:inherit default))))
@@ -165,7 +165,7 @@
  `(font-lock-type-face                   ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
  `(font-lock-variable-name-face          ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
  `(font-lock-warning-face                ((((class color) (min-colors 88) (background ,bgr)) (:inherit error))))
- `(fringe                                ((t (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg))))
+ `(fringe                                ((((class color) (min-colors 88) (background ,bgr)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg))))
  `(gnus-button                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(gnus-cite-1                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(gnus-cite-10                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
@@ -248,9 +248,9 @@
  `(ido-indicator                         ((((min-colors 88) (class color)) (:inherit default))))
  `(ido-only-match                        ((((class color)) (:inherit default))))
  `(ido-subdir                            ((((min-colors 88) (class color)) (:inherit default :underline t))))
- `(isearch                               ((((class color) (min-colors 88) (background ,bgr)) (:background ,isrch-bg :foreground ,isrch-fg))))
+  `(isearch                               ((((class color) (min-colors 88) (background ,bgr)) (:background ,isrch-bg :foreground ,isrch-fg))))
  `(isearch-fail                          ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
- `(lazy-highlight                        ((((class color) (min-colors 88) (background ,bgr)) (:underline nil :weight ,lzy-hi-wgt :overline nil :foreground ,lzy-hi :background ,lzy-hi-bgr))))
+ `(lazy-highlight                        ((((class color) (min-colors 88) (background ,bgr)) (:underline nil :background ,lzy-hi-bg :overline nil :foreground ,lzy-hi))))
  `(link                                  ((t (:inherit default :underline t))))
  `(link-visited                          ((default (:inherit link)) (((class color) (background ,bgr)) nil)))
  `(linum                                 ((t (:inherit default :foreground ,lnum-fg :background ,lnum-bg))))
@@ -324,7 +324,7 @@
  `(outline-6                             ((t (:inherit default))))
  `(outline-7                             ((t (:inherit default))))
  `(outline-8                             ((t (:inherit default))))
- `(region                                ((t (:background ,rgn-bg))))
+ `(region                                ((((class color) (min-colors 88) (background ,bgr)) (:background ,rgn-bg))))
  `(secondary-selection                   ((((class color) (min-colors 88) (background ,bgr)) (:inherit region))))
  `(show-paren-match                      ((((class color) (background ,bgr)) (:weight ,par-match-wgt :foreground ,par-match-fg))))
  `(show-paren-mismatch                   ((((class color)) (:foreground ,paren-mismatch))))
@@ -410,15 +410,38 @@
  `(diff-hunk-header                      ((t (:inherit default :weight bold))))
  `(diff-index                            ((t (:inherit default :weight bold))))
  `(diff-file-header                      ((t (:inherit default :weight bold))))
- `(diff-indicator-added                  ((t (:inherit default ))))
- `(diff-indicator-changed                ((t (:inherit default ))))
- `(diff-indicator-removed                ((t (:inherit default ))))
- `(diff-nonexistent                      ((t (:inherit default ))))
- `(diff-refine-added                     ((t (:inherit default ))))
- `(diff-refine-change                    ((t (:inherit default ))))
- `(diff-refine-removed                   ((t (:inherit default ))))
- `(diff-removed                          ((t (:inherit default ))))
- `(diff-added                            ((t (:inherit default ))))
+ `(diff-indicator-added                  ((t (:inherit default :foreground ,ediff-bg))))
+ `(diff-indicator-changed                ((t (:inherit default :background ,ediff-bg))))
+ `(diff-indicator-removed                ((t (:inherit default :background ,ediff-bg))))
+ `(diff-nonexistent                      ((t (:inherit default :background ,ediff-bg))))
+ `(diff-refine-added                     ((t (:inherit default :background ,ediff-bg))))
+ `(diff-refine-change                    ((t (:inherit default :background ,ediff-bg))))
+ `(diff-refine-removed                   ((t (:inherit default :background ,ediff-bg))))
+ `(diff-removed                          ((t (:inherit default :background ,ediff-bg))))
+ `(diff-added                            ((t (:inherit default :background ,ediff-bg))))
+ `(vr/group-0                            ((t (:inherit default :background ,grp-0))))
+ `(vr/group-1                            ((t (:inherit default :background ,grp-1))))
+ `(vr/group-2                            ((t (:inherit default :background ,grp-2))))
+ `(vr/match-0                            ((t (:inherit default :background ,isrch-bg))))
+ `(vr/match-1                            ((t (:inherit default :background ,lzy-hi))))
+ `(sh-heredoc                            ((t (:inherit default :foreground ,fl-string))))
+ `(sh-quoted-exec                        ((t (:inherit default :foreground ,fl-string))))
+ `(kill-ring-ido-number-face             ((t (:inherit default :foreground ,err))))
+ `(window-number-face                    ((t (:foreground ,modeln-fg :weight bold))))
+ `(whitespace-line                       ((t (:background ,long-lines-bg))))
+ `(whitespace-empty                      ((t (:inherit default))))
+ `(whitespace-hspace                     ((t (:inherit default))))
+ `(whitespace-indentation                ((t (:inherit default))))
+ `(whitespace-newline                    ((t (:inherit default :foreground ,newline))))
+ `(whitespace-space                      ((t (:inherit default))))
+ `(whitespace-space-after-tab            ((t (:inherit default))))
+ `(whitespace-space-before-tab           ((t (:inherit default))))
+ `(whitespace-tab                        ((t (:inherit default))))
+ `(whitespace-trailing                   ((t (:inherit default))))
+ `(trailing-whitespace                   ((t (:inherit default))))
+ `(cursor                                ((t (:inherit default :foreground ,crs-fg :background ,crs-bg))))
+ `(ace-jump-face-foreground              ((t (:inherit default :foreground ,err))))
+ `(ace-jump-face-background              ((t (:inherit default))))
  `(magit-bisect-bad                      ((t (:inherit default ))))
  `(magit-bisect-good                     ((t (:inherit default ))))
  `(magit-bisect-skip                     ((t (:inherit default ))))
@@ -503,29 +526,6 @@
  `(magit-signature-revoked               ((t (:inherit default ))))
  `(magit-signature-untrusted             ((t (:inherit default ))))
  `(magit-tag                             ((t (:inherit default ))))
- `(vr/group-0                            ((t (:inherit default :background ,grp-0))))
- `(vr/group-1                            ((t (:inherit default :background ,grp-1))))
- `(vr/group-2                            ((t (:inherit default :background ,grp-2))))
- `(vr/match-0                            ((t (:inherit default :background ,isrch-bg))))
- `(vr/match-1                            ((t (:inherit default :background ,lzy-hi))))
- `(sh-heredoc                            ((t (:inherit default :foreground ,fl-string))))
- `(sh-quoted-exec                        ((t (:inherit default :foreground ,fl-string))))
- `(kill-ring-ido-number-face             ((t (:inherit default :foreground ,err))))
- `(window-number-face                    ((t (:foreground ,modeln-fg :weight bold))))
- `(whitespace-line                       ((t (:background ,long-lines-bg))))
- `(whitespace-empty                      ((t (:inherit default))))
- `(whitespace-hspace                     ((t (:inherit default))))
- `(whitespace-indentation                ((t (:inherit default))))
- `(whitespace-newline                    ((t (:inherit default :foreground ,newline))))
- `(whitespace-space                      ((t (:inherit default))))
- `(whitespace-space-after-tab            ((t (:inherit default))))
- `(whitespace-space-before-tab           ((t (:inherit default))))
- `(whitespace-tab                        ((t (:inherit default))))
- `(whitespace-trailing                   ((t (:inherit default))))
- `(trailing-whitespace                   ((t (:inherit default))))
- `(cursor                                ((t (:inherit default :foreground ,crs-fg :background ,crs-bg))))
- `(ace-jump-face-foreground              ((t (:inherit default :foreground ,err))))
- `(ace-jump-face-background              ((t (:inherit default))))
  `(slime-error-face                      ((t (:inherit default :foreground ,err))))
  `(slime-highlight-face                  ((t (:inherit default :inverse t))))
  `(slime-inspector-action-face           ((t (:inherit default))))
@@ -556,4 +556,4 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'tkf)
+(provide-theme 'tkf-dark)

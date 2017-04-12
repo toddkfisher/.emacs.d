@@ -320,17 +320,16 @@
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(ansi-term-color-vector
-   [unspecified "#1b181b" "#ca402b" "#918b3b" "#bb8a35" "#516aec" "#7b59c0" "#516aec" "#ab9bab"])
+   [unspecified "#1b181b" "#ca402b" "#918b3b" "#bb8a35" "#516aec" "#7b59c0" "#516aec" "#ab9bab"] t)
  '(auto-hscroll-mode t)
  '(blink-cursor-delay 1.1)
  '(blink-cursor-interval 0.6)
  '(blink-cursor-mode t)
  '(blink-matching-delay 0)
  '(column-number-mode t)
- '(custom-enabled-themes (quote (tkf)))
  '(custom-safe-themes
    (quote
-    ("51805a74175b0f2d6af9c6ff5a23f1cc1a2055a64661065a137b7ed332527942" "6629b370b2488537cd1659d54e06e3bb78188239059fdee402852d298e7bd4bc" "2f361d968b8f013c64bc60e63926ddc7e29a9ebcabbbbc3760a54d2d98bb4fe5" "ce9be0dd2537e80f04fd5ecc739fb3dad2e2e413b2cf12df3dc7150a9d83c2a8")))
+    ("201f55912ad5740703a046ff5393d802e6694b8e12caa53c1753cfe6c0f1a42e" "80c5b30da80de54452fa39626962f5168b53839c2790fc197b2a699a122ae363")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
@@ -414,7 +413,7 @@
  '(window-divider-default-right-width 1)
  '(window-divider-mode t))
 
-(load-theme 'tkf t)
+(load-theme 'tkf-dark t)
 
 ;;------------------------------------------------------------------------------
 ;; MISC FUNCTIONS THAT I'VE SNAGGED OR WRITTEN
