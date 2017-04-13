@@ -2,8 +2,8 @@
 (setq bg                 "#242429"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "#bfbfc1"
-      kw                 fg
+      fg                 "#CDCCCB"
+      kw                 "#858580"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
       string-slant       'normal
