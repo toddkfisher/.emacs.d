@@ -130,7 +130,8 @@
 (use-package sr-speedbar
   :init
   (setq sr-speedbar-auto-refresh nil)
-  (setq sr-speedbar-max-width 20)
+  (setq sr-speedbar-default-width 31)
+  (setq sr-speedbar-max-width 31)
   (setq sr-speedbar-right-side nil))
 
 ;;------------------------------------------------------------------------------
@@ -329,7 +330,7 @@
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("0dc2ed46e9d58bbb9818aacc1d423f558585603c144b59d27010b2887ad905ba" "0c8271cdf7e18395d4a14c1e2db5caf7204e43cbd3f2cbb31590d57a41d3f500" "ce3d9c8e153174dab10e43cdd0d9f1511d02a069a90212365214e70477edbee9" "7e40dde291eb4f6e74d1f1fee67603fbc3e9f8721625ccf7f7368cb3cbcc829e" "91a68d9e6f8e22135a7c1831334ade3fdca537a6f95d2a9155080beebeabd430" "5984483030367ec377864dc25066671772beef3999c206c8b87ccafe636bf632" "201f55912ad5740703a046ff5393d802e6694b8e12caa53c1753cfe6c0f1a42e" "80c5b30da80de54452fa39626962f5168b53839c2790fc197b2a699a122ae363")))
+    ("65c008dd654272c7ac962b94f17ac7b92117113a43ebc90bf7d353140a3a1879" "82961e6d9222488b8650bca2dc4f86174d1957db2bedfae94979778d54ca16bc" "0dc2ed46e9d58bbb9818aacc1d423f558585603c144b59d27010b2887ad905ba" "0c8271cdf7e18395d4a14c1e2db5caf7204e43cbd3f2cbb31590d57a41d3f500" "ce3d9c8e153174dab10e43cdd0d9f1511d02a069a90212365214e70477edbee9" "7e40dde291eb4f6e74d1f1fee67603fbc3e9f8721625ccf7f7368cb3cbcc829e" "91a68d9e6f8e22135a7c1831334ade3fdca537a6f95d2a9155080beebeabd430" "5984483030367ec377864dc25066671772beef3999c206c8b87ccafe636bf632" "201f55912ad5740703a046ff5393d802e6694b8e12caa53c1753cfe6c0f1a42e" "80c5b30da80de54452fa39626962f5168b53839c2790fc197b2a699a122ae363")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
@@ -380,9 +381,6 @@
  '(speedbar-use-images nil)
  '(speedbar-use-imenu-flag nil)
  '(speedbar-verbosity-level 0)
- '(sr-speedbar-auto-refresh t)
- '(sr-speedbar-max-width 20)
- '(sr-speedbar-right-side nil)
  '(standard-indent 2)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
@@ -413,7 +411,7 @@
  '(window-divider-default-right-width 1)
  '(window-divider-mode t))
 
-(load-theme 'tkf-dark t)
+(load-theme 'tkf t)
 
 ;;------------------------------------------------------------------------------
 ;; MISC FUNCTIONS THAT I'VE SNAGGED OR WRITTEN
@@ -432,6 +430,11 @@
 ;;  (let ((buffers (buffer-vector)))
 ;;    (do ((i 0 (1+ i)))
 ;;        (
+
+;;------------------------------------------------------------------------------
+(defun tkf-make-frame ()
+  (interactive)
+  (make-frame `((font . ,default-font))))
 
 ;;------------------------------------------------------------------------------
 ;; From emacswiki
