@@ -11,7 +11,7 @@
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
-      fl-func-fg         fg
+      fl-func-fg         "grey35"
       fl-comment         "grey20"
       comment-slant      'italic
       notice             "firebrick"
