@@ -361,10 +361,11 @@
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(org-export-backends (quote (ascii html icalendar latex md)))
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (bury-successful-compilation markdown-mode+ ido-vertical-mode doom-themes syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text ac-c-headers smex magit multiple-cursors hl-sexp visual-regexp expand-region popup-kill-ring peg)))
+    (org ox-gfm bury-successful-compilation markdown-mode+ ido-vertical-mode doom-themes syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text ac-c-headers smex magit multiple-cursors hl-sexp visual-regexp expand-region popup-kill-ring peg)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(ruler-mode-show-tab-stops nil)
  '(save-place t nil (saveplace))
