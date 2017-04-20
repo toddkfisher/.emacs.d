@@ -11,7 +11,7 @@
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
-      fl-func-fg         "grey35"
+      fl-func-fg         fg
       fl-comment         "grey20"
       comment-slant      'italic
       notice             "firebrick"
@@ -29,7 +29,7 @@
       modeln-bg          "sandy brown"
       modeln-fg          "grey15"
       modeln-inactive-fg "gray75"
-      modeln-inactive-bg "#7A7C85"
+      modeln-inactive-bg "#6E7077"
       hl-ln              modeln-inactive-bg
       err                "dark red"
       bm-fg              "white"

@@ -1,5 +1,5 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "#242429"
+(setq bg                 "#17171C" ;"#242429"
       kw-wgt             'bold
       kw-slant           'italic
       fg                 "#CDCCCB"
@@ -10,7 +10,7 @@
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
-      fl-func-fg         "SkyBlue4"
+      fl-func-fg         "RoyalBlue2"
       fl-comment         "grey60"
       comment-slant      'italic
       bgr                'dark
