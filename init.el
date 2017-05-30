@@ -330,7 +330,7 @@
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "a30975336ad7195232afb6627aca729888e2accbef4165a0742a48ef4fcbf3bf" "4ada24335cb0d66178398bf131370c76078d8065c7fc6bec2cde89e40600e2b7" "8c44ea7c8cd6b8aa1ca8e693abe36c224b09033306697c10cc561cd0f9127ae9" "ec420412ca51d1e7ecfcfb93a63a0b2da19e844fc8503b3b6202d8ec07714ac1" "b9fe29e3ea92c0bc583b6b2fb5ad2d5fa0c5ef99edd85ec8a336ae8a27a9ca4b" "1bf769956d2962c23ef5a6a14ee72330e48fe5edbae1684cbc427ee39f041333" "e6ab033cc27439975c46a4100fce0eb3d7d3bed1bbd48f74c0ca2b0265b39ccc" "0ee6fec26bd05c7cf2c4b8b155cb591aacbe0a9b9e419b018c683ffe2e1d2adf" "23747e918e85ad557285ee86b005123fad47c8ea90299ac9934621a8dd131a3b" "c966a1fd2a88c43f370579848257861ac3a37c4a0e9e4fae4e38bd4586e23b07" "be77c6782521c17cca0bbe02df0a488929790d005ed0c074813a99365bd8a5be" "e49e290e9ebd0fad2636c6dc2e86cb3edf94dfa01f4ad3ef0d724db4381a7047" "db4e0931d916c67d26537e7fefd8a779c79aa57ce355cc399ff7519a26e6279c" "59c26245b996ea5fc20ae673f82908581192c97bdae6575263d0317b0cf1e913" "12d8c89aeec4163477d819107b0079ce75773ab68cd76c2f8c46b910f1b45179" "65c008dd654272c7ac962b94f17ac7b92117113a43ebc90bf7d353140a3a1879" "82961e6d9222488b8650bca2dc4f86174d1957db2bedfae94979778d54ca16bc" "0dc2ed46e9d58bbb9818aacc1d423f558585603c144b59d27010b2887ad905ba" "0c8271cdf7e18395d4a14c1e2db5caf7204e43cbd3f2cbb31590d57a41d3f500" "ce3d9c8e153174dab10e43cdd0d9f1511d02a069a90212365214e70477edbee9" "7e40dde291eb4f6e74d1f1fee67603fbc3e9f8721625ccf7f7368cb3cbcc829e" "91a68d9e6f8e22135a7c1831334ade3fdca537a6f95d2a9155080beebeabd430" "5984483030367ec377864dc25066671772beef3999c206c8b87ccafe636bf632" "201f55912ad5740703a046ff5393d802e6694b8e12caa53c1753cfe6c0f1a42e" "80c5b30da80de54452fa39626962f5168b53839c2790fc197b2a699a122ae363")))
+    ("041a7be1d4834437a326bab205bfb9c1325c18e42fa348b66cb5790ecbed9c29" "c2f31900c9a5c70a0b9f464e0d27d90e8d4e95656e1736f88ed86f88d11ebdc6" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "a30975336ad7195232afb6627aca729888e2accbef4165a0742a48ef4fcbf3bf" "4ada24335cb0d66178398bf131370c76078d8065c7fc6bec2cde89e40600e2b7" "8c44ea7c8cd6b8aa1ca8e693abe36c224b09033306697c10cc561cd0f9127ae9" "ec420412ca51d1e7ecfcfb93a63a0b2da19e844fc8503b3b6202d8ec07714ac1" "b9fe29e3ea92c0bc583b6b2fb5ad2d5fa0c5ef99edd85ec8a336ae8a27a9ca4b" "1bf769956d2962c23ef5a6a14ee72330e48fe5edbae1684cbc427ee39f041333" "e6ab033cc27439975c46a4100fce0eb3d7d3bed1bbd48f74c0ca2b0265b39ccc" "0ee6fec26bd05c7cf2c4b8b155cb591aacbe0a9b9e419b018c683ffe2e1d2adf" "23747e918e85ad557285ee86b005123fad47c8ea90299ac9934621a8dd131a3b" "c966a1fd2a88c43f370579848257861ac3a37c4a0e9e4fae4e38bd4586e23b07" "be77c6782521c17cca0bbe02df0a488929790d005ed0c074813a99365bd8a5be" "e49e290e9ebd0fad2636c6dc2e86cb3edf94dfa01f4ad3ef0d724db4381a7047" "db4e0931d916c67d26537e7fefd8a779c79aa57ce355cc399ff7519a26e6279c" "59c26245b996ea5fc20ae673f82908581192c97bdae6575263d0317b0cf1e913" "12d8c89aeec4163477d819107b0079ce75773ab68cd76c2f8c46b910f1b45179" "65c008dd654272c7ac962b94f17ac7b92117113a43ebc90bf7d353140a3a1879" "82961e6d9222488b8650bca2dc4f86174d1957db2bedfae94979778d54ca16bc" "0dc2ed46e9d58bbb9818aacc1d423f558585603c144b59d27010b2887ad905ba" "0c8271cdf7e18395d4a14c1e2db5caf7204e43cbd3f2cbb31590d57a41d3f500" "ce3d9c8e153174dab10e43cdd0d9f1511d02a069a90212365214e70477edbee9" "7e40dde291eb4f6e74d1f1fee67603fbc3e9f8721625ccf7f7368cb3cbcc829e" "91a68d9e6f8e22135a7c1831334ade3fdca537a6f95d2a9155080beebeabd430" "5984483030367ec377864dc25066671772beef3999c206c8b87ccafe636bf632" "201f55912ad5740703a046ff5393d802e6694b8e12caa53c1753cfe6c0f1a42e" "80c5b30da80de54452fa39626962f5168b53839c2790fc197b2a699a122ae363")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
@@ -364,22 +364,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (nasm-mode
-     bury-successful-compilation
-     markdown-mode+ ido-vertical-mode
-     syntax-subword
-     idomenu ido-ubiquitous
-     ido-select-window
-     use-package
-     window-numbering
-     bm
-     move-text
-     smex
-     magit
-     multiple-cursors
-     visual-regexp
-     expand-region
-     popup-kill-ring peg)))
+    (nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(ruler-mode-show-tab-stops nil)
  '(save-place t nil (saveplace))
@@ -387,6 +372,7 @@
  '(scroll-conservatively 1)
  '(scroll-preserve-screen-position t)
  '(scroll-step 1)
+ '(send-mail-function (quote mailclient-send-it))
  '(shift-select-mode nil)
  '(show-paren-mode t)
  '(speedbar-directory-unshown-regexp "^$")
@@ -426,7 +412,7 @@
  '(window-divider-default-right-width 1)
  '(window-divider-mode t))
 
-(load-theme 'tkf t)
+(load-theme 'tkf-dark t)
 
 ;;------------------------------------------------------------------------------
 ;; MISC FUNCTIONS THAT I'VE SNAGGED OR WRITTEN
