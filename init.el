@@ -195,7 +195,7 @@
 ;;------------------------------------------------------------------------------
 (use-package cc-mode
   :config
-  (setq c-basic-offset 2)
+  (setq-default c-basic-offset 4)
   (setq c-default-style
         (quote
          ((c-mode . "ellemtel")
@@ -232,7 +232,7 @@
 (use-package lua-mode
   :init
   (setq lua-always-show nil)
-  (setq lua-indent-level 2)
+  (setq lua-indent-level 4)
   (setq lua-prefix-key "C-c"))
 
 ;;------------------------------------------------------------------------------
@@ -286,7 +286,7 @@
 (window-numbering-mode t)
 (setq-default indent-tabs-mode nil)
 (setq scroll-step 1)
-(setq-default tab-width 2)
+(setq-default tab-width 4)
 (setq compilation-scroll-output t)
 (column-number-mode 2)
 (setq scroll-preserve-screen-position nil)
@@ -377,12 +377,12 @@
  '(show-paren-mode t)
  '(speedbar-directory-unshown-regexp "^$")
  '(speedbar-fetch-etags-arguments nil)
- '(speedbar-indentation-width 2)
+ '(speedbar-indentation-width 4)
  '(speedbar-tag-group-name-minimum-length 10)
  '(speedbar-use-images nil)
  '(speedbar-use-imenu-flag nil)
  '(speedbar-verbosity-level 0)
- '(standard-indent 2)
+ '(standard-indent 4)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
