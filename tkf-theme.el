@@ -6,13 +6,13 @@
       fg                 "grey10"
       kw                 fg
       cursor             "yellow"
-      fl-string          "MidnightBlue"
+      fl-string          "DarkSlateBlue"
       string-slant       'normal
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
       fl-func-fg         fg
-      fl-comment         "grey20"
+      fl-comment         "grey35"
       comment-slant      'italic
       notice             "firebrick"
       paren-mismatch     notice
