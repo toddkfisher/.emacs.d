@@ -120,7 +120,7 @@
   (setq speedbar-tag-group-name-minimum-length 10)
   (setq speedbar-update-flag t)
   (setq speedbar-use-images nil)
-  (setq speedbar-use-imenu-flag t)
+  (setq speedbar-use-imenu-flag nil)
   (setq speedbar-verbosity-level 0)
   :config
   (speedbar-add-supported-extension ".org")
@@ -315,6 +315,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ac-etags-requires 1)
  '(align-text-modes (quote (text-mode outline-mode fundamental-mode)))
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
@@ -329,7 +330,8 @@
  '(blink-matching-delay 0)
  '(column-number-mode t)
  '(custom-safe-themes
-   (quote ()))
+   (quote
+    ("23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
@@ -363,8 +365,10 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
+    (c-eldoc ac-clang ac-etags creamsody-theme nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+ '(pos-tip-background-color "#1A3734")
+ '(pos-tip-foreground-color "#FFFFC8")
  '(ruler-mode-show-tab-stops nil)
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
@@ -374,13 +378,6 @@
  '(send-mail-function (quote mailclient-send-it))
  '(shift-select-mode nil)
  '(show-paren-mode t)
- '(speedbar-directory-unshown-regexp "^$")
- '(speedbar-fetch-etags-arguments nil)
- '(speedbar-indentation-width 4)
- '(speedbar-tag-group-name-minimum-length 10)
- '(speedbar-use-images nil)
- '(speedbar-use-imenu-flag nil)
- '(speedbar-verbosity-level 0)
  '(standard-indent 4)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
