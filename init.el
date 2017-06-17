@@ -120,7 +120,7 @@
   (setq speedbar-tag-group-name-minimum-length 10)
   (setq speedbar-update-flag t)
   (setq speedbar-use-images nil)
-  (setq speedbar-use-imenu-flag nil)
+  (setq speedbar-use-imenu-flag t)
   (setq speedbar-verbosity-level 0)
   :config
   (speedbar-add-supported-extension ".org")
