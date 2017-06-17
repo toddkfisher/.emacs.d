@@ -1,5 +1,5 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "#2b2b2b"
+(setq bg                 "#222222"
       kw-wgt             'bold
       kw-slant           'italic
       fg                 "#CDCCCB"
@@ -30,6 +30,7 @@
       modeln-fg          "black"
       modeln-inactive-fg "gray37"
       modeln-inactive-bg "gray20"
+      modeln-outline     "gray"
       err                "dark red"
       bm-fg              "white"
       bm-bg              isrch-bg
@@ -267,9 +268,9 @@
  `(message-separator                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(minibuffer-prompt                     ((t (:inherit default))))
  `(mm-uu-extract                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box t :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :box t))))
+ `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :box (:line-width 2 :color ,modeln-outline)))))
  `(mode-line-highlight                   ((((class color) (min-colors 88)) (:box nil :weight bold))))
- `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :box t :weight normal))))
+ `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :box (:line-width 2 :color modeln-outline) :weight normal))))
  `(next-error                            ((t (:inherit error))))
  `(org-agenda-column-dateline            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(org-block                             ((t (:inherit default))))
