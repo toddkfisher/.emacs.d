@@ -206,6 +206,11 @@
                                   (modify-syntax-entry ?_ "w" c-mode-syntax-table))))
 
 ;;------------------------------------------------------------------------------
+(use-package c-eldoc
+  :config
+  (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode))
+
+;;------------------------------------------------------------------------------
 (use-package bury-successful-compilation
   :config
   (bury-successful-compilation 1))
@@ -315,6 +320,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(Man-notify-method (quote pushy))
  '(ac-etags-requires 1)
  '(align-text-modes (quote (text-mode outline-mode fundamental-mode)))
  '(ansi-color-faces-vector
@@ -331,7 +337,7 @@
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
+    ("cc5f20e3da891112f77f14d3d1650f7faa3e1051b3f9f527dcf8d71039893ac9" "3cbcddac24a78361e0d69af42f5970ab99b0ba6ca9cb47bbbfbbe680362b0b20" "c5206ba2411b3665e02f3ce0fc5d8461790a9bad8b2bb7db6604856bcfcf8b3d" "fcfcd70b25718334c188f41b33f96da3b46b6093fc4cb94cd0b0d3063ed48ec5" "3a5007fa3d1fe8fee567c59e6cdd43f1924ab320cb938fe11745710a44cac30b" "157956dd11bb3f8cd6856cc32c6df31583086da13c96b480e25e6705c3765dcd" "868360d9afa25cb16ea603a5c78655acc21db2ea508acdc63b8acb93880b3440" "8e2ebb60baf42758a76565808251aa197556d9f751e6c6a55e811ecdbd69deca" "8464a1275056fb10d7f2e712c7e3750abbf6c3ac952a005ad7c1a8e2eece88ea" "df745aa43d57560c339941c1d68d4d91d0df6e984ac511a68209960b6abd0f6d" "23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
@@ -340,13 +346,16 @@
  '(fancy-splash-image nil)
  '(fci-rule-color "#3E4451")
  '(frame-background-mode nil)
+ '(grep-command "grep -in")
+ '(grep-find-command (quote ("find . -type f -exec grep /dev/null {} +" . 26)))
  '(highlight-changes-colors nil)
  '(hl-paren-colors
    (quote
     ("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11")))
  '(hscroll-margin 0)
  '(hscroll-step 5)
- '(imenu-auto-rescan t)
+ ;'(imenu-auto-rescan t)
+ ;'(imenu-max-items 100)
  '(inhibit-startup-echo-area-message t)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
@@ -365,7 +374,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (notmuch sr-speedbar c-eldoc ac-clang ac-etags creamsody-theme nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
+    (sr-speedbar imenu-anywhere c-eldoc ac-clang ac-etags creamsody-theme nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#1A3734")
  '(pos-tip-foreground-color "#FFFFC8")
@@ -406,7 +415,8 @@
  '(vc-annotate-very-old-color nil)
  '(visible-bell nil)
  '(window-divider-default-right-width 1)
- '(window-divider-mode t))
+ '(window-divider-mode t)
+ '(woman-locale "en_US.UTF-8"))
 
 (load-theme 'tkf-dark t)
 
