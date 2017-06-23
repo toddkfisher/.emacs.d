@@ -135,6 +135,16 @@
   (setq sr-speedbar-right-side nil))
 
 ;;------------------------------------------------------------------------------
+(use-package imenu
+  :init
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (add-to-list 'imenu-generic-expression
+                           '("Macro" "^\\s-*\#\\s-*define\\s-+\\([a-zA-Z_][a-zA-Z_0-9]*\\)" 1))
+              (add-to-list 'imenu-generic-expression
+                           '("Enum" "^\\s-*enum\\s-+\\([a-zA-Z_][a-zA-Z_0-9]*\\)" 1)))))
+
+;;------------------------------------------------------------------------------
 (use-package eshell
   :init
   (setq eshell-highlight-prompt t)
@@ -354,8 +364,6 @@
     ("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11")))
  '(hscroll-margin 0)
  '(hscroll-step 5)
- ;'(imenu-auto-rescan t)
- ;'(imenu-max-items 100)
  '(inhibit-startup-echo-area-message t)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
@@ -374,7 +382,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (sr-speedbar imenu-anywhere c-eldoc ac-clang ac-etags creamsody-theme nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
+    (sr-speedbar imenu-anywhere c-eldoc nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#1A3734")
  '(pos-tip-foreground-color "#FFFFC8")
@@ -388,6 +396,8 @@
  '(shift-select-mode nil)
  '(show-paren-mode t)
  '(standard-indent 4)
+ '(sublimity-mode t)
+ '(sublimity-scroll-drift-length 20)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
@@ -731,22 +741,19 @@ Version 2015-04-09"
 (global-set-key (kbd "C-.")             'mc/mark-next-like-this)
 (global-set-key (kbd "C-,")             'mc/mark-previous-like-this)
 (global-set-key (kbd "C-/")             'mc/mark-all-like-this)
-(global-set-key (kbd "M-z")             'zap-up-to-char)
-(global-set-key (kbd "M-Z")             'zap-to-char)
+(global-set-key (kbd "M-]")             'zap-up-to-char)
+(global-set-key (kbd "M-[")             (lambda (c)
+                                          (interactive "cZap backward upto char:")
+                                          (zap-up-to-char -1 c)))
 (global-set-key (kbd "C-z")             'undo)
-(global-set-key (kbd "M-[")             'move-text-up)
-(global-set-key (kbd "M-]")             'move-text-down)
+(global-set-key (kbd "<M-up>")          'move-text-up)
+(global-set-key (kbd "<M-down>")        'move-text-down)
 (global-set-key (kbd "C-a")             'tkf-beginning-of-line)
 (global-set-key (kbd "C-=")             'er/expand-region)
 (global-set-key (kbd "C-x C-r")         'recentf-open-files)
 (global-set-key (kbd "<C-right>")       'tkf-forward-blank)
 (global-set-key (kbd "<C-left>")        'tkf-back-blank)
 (global-set-key (kbd "C-M-<return>")    'hs-toggle-hiding)
-(global-set-key (kbd "<M-up>")          'windmove-up)
-(global-set-key (kbd "<M-down>")        'windmove-down)
-(global-set-key (kbd "<M-left>")        'windmove-left)
-(global-set-key (kbd "<M-right>")       'windmove-right)
-
 
 ;;--- The "a" key won't work properly in dired mode when a window is protected
 ;;    so unprotect it briefly, do the "a"-thing, then reprotect.
@@ -779,3 +786,9 @@ Version 2015-04-09"
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
