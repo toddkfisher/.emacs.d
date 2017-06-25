@@ -2,15 +2,15 @@
 (setq bg                 "#222222"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "#CDCCCB"
-      kw                 "#858580"
+      fg                 "#eeeeec"
+      kw                 "LightSteelBlue4"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
       string-slant       'normal
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
-      fl-func-fg         "SteelBlue"
+      fl-func-fg         "SkyBlue3"
       fl-comment         "grey60"
       comment-slant      'italic
       bgr                'dark
@@ -547,7 +547,8 @@
  `(flyspell-duplicate                    ((t (:inherit error :underline t))))
  `(flyspell-incorrect                    ((t (:inherit error :weight bold))))
  `(ac-completion-face                    ((t (:inherit default :underline t :foreground ,fl-string))))
- `(mc/cursor-face                        ((t (:interit default))))
+ `(mc/cursor-face                        ((t (:interit cursor :foreground ,cursor))))
+ `(mc/cursor-bar-face                    ((t (:interit cursor :foreground ,cursor))))
  `(racket-keyword-argument-face          ((t (:interit font-lock-keyword-face))))
  `(racket-paren-face                     ((t (:interit font-lock-keyword-face))))
  `(racket-selfeval-face                  ((t (:interit font-lock-keyword-face))))
