@@ -3,14 +3,14 @@
       kw-wgt             'bold
       kw-slant           'italic
       fg                 "#CDCCCB"
-      kw                 "#858580"
+      kw                 "gray50"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
       string-slant       'normal
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
-      fl-func-fg         "SteelBlue"
+      fl-func-fg         "LightSkyBlue3"
       fl-comment         "grey60"
       comment-slant      'italic
       bgr                'dark
