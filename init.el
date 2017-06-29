@@ -113,6 +113,9 @@
   (setq speedbar-fetch-etags-command "etags")
   (setq speedbar-show-unknown-files nil)
   (setq speedbar-smart-directory-expand-flag t)
+  (setq speedbar-tag-hierarchy-method (quote (speedbar-sort-tag-hierarchy)))
+  (setq speedbar-tag-split-minimum-length 2000)
+  (setq speedbar-use-images t)
   (setq speedbar-supported-extension-expressions
    (quote
     (".lua" ".org" ".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?"
@@ -120,7 +123,6 @@
      ".p" ".java" ".js" ".f\\(90\\|77\\|or\\)?" ".scm")))
   (setq speedbar-tag-group-name-minimum-length 10)
   (setq speedbar-update-flag t)
-  (setq speedbar-use-images nil)
   (setq speedbar-use-imenu-flag t)
   (setq speedbar-verbosity-level 0)
   :config
@@ -131,9 +133,19 @@
 (use-package sr-speedbar
   :init
   (setq sr-speedbar-auto-refresh nil)
-  (setq sr-speedbar-default-width 31)
-  (setq sr-speedbar-max-width 31)
+  (setq sr-speedbar-default-width 25)
+  (setq sr-speedbar-max-width 25)
   (setq sr-speedbar-right-side nil))
+
+;;------------------------------------------------------------------------------
+(use-package imenu
+  :init
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (add-to-list 'imenu-generic-expression
+                           '("Macro" "^\\s-*\#\\s-*define\\s-+\\([a-zA-Z_][a-zA-Z_0-9]*\\)" 1))
+              (add-to-list 'imenu-generic-expression
+                           '("Enum" "^\\s-*enum\\s-+\\([a-zA-Z_][a-zA-Z_0-9]*\\)" 1)))))
 
 ;;------------------------------------------------------------------------------
 (use-package eshell
@@ -196,7 +208,7 @@
 ;;------------------------------------------------------------------------------
 (use-package cc-mode
   :config
-  (setq-default c-basic-offset 4)
+  (setq-default c-basic-offset 2)
   (setq c-default-style
         (quote
          ((c-mode . "ellemtel")
@@ -228,17 +240,17 @@
 (use-package cua-mode
   :init
   (setq cua-enable-cua-keys nil)
-  (cua-mode t)
+  (cua-mode)
   :bind
-  (("C-c d"   . cua-delete-region)
-   ("C-c RET" . cua-cancel)
-   ("C-c TAB" . cua-set-rectangle-mark)))
+  ("C-c d" . cua-delete-region)
+  ("C-c RET" . cua-cancel)
+  ("C-c TAB" . cua-set-rectangle-mark))
 
 ;;------------------------------------------------------------------------------
 (use-package lua-mode
   :init
   (setq lua-always-show nil)
-  (setq lua-indent-level 4)
+  (setq lua-indent-level 2)
   (setq lua-prefix-key "C-c"))
 
 ;;------------------------------------------------------------------------------
@@ -316,6 +328,8 @@
 (electric-indent-mode t)
 (winner-mode 1)
 (setq-default truncate-lines t)
+(load-theme 'tkf-dark t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -338,7 +352,7 @@
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("76678bf7c11497f195f7af6b4c9b5b0d25604d393df20f078c68974e0959c05a" "a10a6a9214458aab2153a8ac393dc7d986f3de9e91d7496ef604e1a83b36ab8d" "102e42577f7bc60b458baa9344ba55ffd8fd3848b0a17e11e15fac2b4cbd2a01" "61d9bc1a018d2bee96de104ba76803ff01b6f40a7aa7b070c938777e2f3d2ade" "cc5f20e3da891112f77f14d3d1650f7faa3e1051b3f9f527dcf8d71039893ac9" "3cbcddac24a78361e0d69af42f5970ab99b0ba6ca9cb47bbbfbbe680362b0b20" "c5206ba2411b3665e02f3ce0fc5d8461790a9bad8b2bb7db6604856bcfcf8b3d" "fcfcd70b25718334c188f41b33f96da3b46b6093fc4cb94cd0b0d3063ed48ec5" "3a5007fa3d1fe8fee567c59e6cdd43f1924ab320cb938fe11745710a44cac30b" "157956dd11bb3f8cd6856cc32c6df31583086da13c96b480e25e6705c3765dcd" "868360d9afa25cb16ea603a5c78655acc21db2ea508acdc63b8acb93880b3440" "8e2ebb60baf42758a76565808251aa197556d9f751e6c6a55e811ecdbd69deca" "8464a1275056fb10d7f2e712c7e3750abbf6c3ac952a005ad7c1a8e2eece88ea" "df745aa43d57560c339941c1d68d4d91d0df6e984ac511a68209960b6abd0f6d" "23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
+    ("d42f4f906ca69e5a5f1efa1af75b48dc865eb5b478edc2ac24b047f8aa1b5f01" "a01e0cf273ac7b5c1baeeebb296ef683deff7293b9a25c9b783883e7ebe12aed" "d9edc29a9b27d7098646c3315c5ab8fdf07638b1ab4f80360a521f845a3c5fb0" "87d34869134b5497549a25dff75367d68aed7a8e3da598c9fa4e060a4e1f948e" "e3164f469e6f7aa0ec451dd7b66ac79111bdd78d4cfec69e8bb9c66fca912a48" "a7571dfde3a54d069bc7969457b213023d69a7534a556b4c27e301cbac1be221" "5fa0947f1d0d999eee035069b8b65cc4f2f14e1717e1792ec3d80ae625e0f29f" "b335b10a1d293669d7493018b099f34cbca1e8fb8bd43db50096c9306a567f91" "e9f71e1e9e479c080612c0e6cb0109c7a9fc1dafeeec7b0fee075d23fa793370" "f2d8571772c7216c5dca60e00590f710b1c55e4b866c8c130d547e4a3f204e8b" "582e2e5490bc4416ea0481db6f5b2c7203426959f545c88273fa3220e3528d1d" "cc5f20e3da891112f77f14d3d1650f7faa3e1051b3f9f527dcf8d71039893ac9" "3cbcddac24a78361e0d69af42f5970ab99b0ba6ca9cb47bbbfbbe680362b0b20" "c5206ba2411b3665e02f3ce0fc5d8461790a9bad8b2bb7db6604856bcfcf8b3d" "fcfcd70b25718334c188f41b33f96da3b46b6093fc4cb94cd0b0d3063ed48ec5" "3a5007fa3d1fe8fee567c59e6cdd43f1924ab320cb938fe11745710a44cac30b" "157956dd11bb3f8cd6856cc32c6df31583086da13c96b480e25e6705c3765dcd" "868360d9afa25cb16ea603a5c78655acc21db2ea508acdc63b8acb93880b3440" "8e2ebb60baf42758a76565808251aa197556d9f751e6c6a55e811ecdbd69deca" "8464a1275056fb10d7f2e712c7e3750abbf6c3ac952a005ad7c1a8e2eece88ea" "df745aa43d57560c339941c1d68d4d91d0df6e984ac511a68209960b6abd0f6d" "23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
@@ -346,6 +360,7 @@
  '(diff-switches "-C 5")
  '(fancy-splash-image nil)
  '(fci-rule-color "#3E4451")
+ '(font-lock-global-modes (quote (not speedbar-mode)))
  '(frame-background-mode nil)
  '(grep-command "grep -in")
  '(grep-find-command (quote ("find . -type f -exec grep /dev/null {} +" . 26)))
@@ -373,7 +388,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (sr-speedbar imenu-anywhere c-eldoc ac-clang ac-etags creamsody-theme nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
+    (rectangle-utils sr-speedbar imenu-anywhere c-eldoc nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#1A3734")
  '(pos-tip-foreground-color "#FFFFC8")
@@ -386,7 +401,9 @@
  '(send-mail-function (quote mailclient-send-it))
  '(shift-select-mode nil)
  '(show-paren-mode t)
- '(standard-indent 4)
+ '(standard-indent 2)
+ '(sublimity-mode t)
+ '(sublimity-scroll-drift-length 20)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
@@ -417,25 +434,19 @@
  '(window-divider-mode t)
  '(woman-locale "en_US.UTF-8"))
 
-(load-theme 'tkf-dark t)
-
 ;;------------------------------------------------------------------------------
 ;; MISC FUNCTIONS THAT I'VE SNAGGED OR WRITTEN
 
-;;(defun switch-to-scratch-buffer ()
-;;  (interactive)
-;;  (switch-to-buffer "*scratch*"))
-;;
-;;(defun buffer-vector ()
-;;  (apply 'vector (buffer-list)))
-;;
-;;
-;;
-;;(defun switch-to-file-buff ()
-;;  (interactive)
-;;  (let ((buffers (buffer-vector)))
-;;    (do ((i 0 (1+ i)))
-;;        (
+(defun switch-to-next-file-buffer ()
+  (interactive)
+  (dolist (buff (cdr (buffer-list)))
+    (when (buffer-file-name buff)
+      (switch-to-buffer buff)
+      (return))))
+
+(defun copy-whole-line-trim ()
+  (interactive)
+  (kill-ring-save (line-beginning-position) (line-end-position)))
 
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
@@ -703,8 +714,7 @@ Version 2015-04-09"
 ;; Custom bindings
 
 (global-set-key (kbd "C-x k")           'kill-this-buffer)
-(global-set-key (kbd "C-M-;")           'next-buffer)
-(global-set-key (kbd "C-M-'")           'previous-buffer)
+(global-set-key (kbd "C-M-;")           'next-file-buffer)
 ;(global-set-key (kbd "C-M-'")           'push-mark-no-activate)
 ;(global-set-key (kbd "C-M-;")           'jump-to-mark)
 (global-set-key (kbd "C-c k")             (lambda ()
@@ -726,26 +736,24 @@ Version 2015-04-09"
 (global-set-key (kbd "C-c r")           (lambda () (interactive)
                                           (xah-search-current-word -1)))
 (global-set-key (kbd "C-c y")           'popup-kill-ring)
-(global-set-key (kbd "C-c l")           'copy-line)
+(global-set-key (kbd "C-c w")           'copy-line)
 (global-set-key (kbd "C-.")             'mc/mark-next-like-this)
 (global-set-key (kbd "C-,")             'mc/mark-previous-like-this)
 (global-set-key (kbd "C-/")             'mc/mark-all-like-this)
+(global-set-key (kbd "M-]")             'zap-up-to-char)
 (global-set-key (kbd "M-z")             'zap-up-to-char)
-(global-set-key (kbd "M-Z")             'zap-to-char)
+(global-set-key (kbd "M-[")             (lambda (c)
+                                          (interactive "cZap backward upto char:")
+                                          (zap-up-to-char -1 c)))
 (global-set-key (kbd "C-z")             'undo)
-(global-set-key (kbd "M-[")             'move-text-up)
-(global-set-key (kbd "M-]")             'move-text-down)
+(global-set-key (kbd "<M-up>")          'move-text-up)
+(global-set-key (kbd "<M-down>")        'move-text-down)
 (global-set-key (kbd "C-a")             'tkf-beginning-of-line)
 (global-set-key (kbd "C-=")             'er/expand-region)
 (global-set-key (kbd "C-x C-r")         'recentf-open-files)
 (global-set-key (kbd "<C-right>")       'tkf-forward-blank)
 (global-set-key (kbd "<C-left>")        'tkf-back-blank)
 (global-set-key (kbd "C-M-<return>")    'hs-toggle-hiding)
-(global-set-key (kbd "<M-up>")          'windmove-up)
-(global-set-key (kbd "<M-down>")        'windmove-down)
-(global-set-key (kbd "<M-left>")        'windmove-left)
-(global-set-key (kbd "<M-right>")       'windmove-right)
-
 
 ;;--- The "a" key won't work properly in dired mode when a window is protected
 ;;    so unprotect it briefly, do the "a"-thing, then reprotect.
@@ -778,9 +786,3 @@ Version 2015-04-09"
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
