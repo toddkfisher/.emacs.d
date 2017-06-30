@@ -16,7 +16,6 @@
 (require 'scheme)
 (load "~/.emacs.d/lua-mode") ;- custom version
 
-
 ;;------------------------------------------------------------------------------
 (use-package bury-successful-compilation
   :config
@@ -446,8 +445,14 @@
 
 (defun copy-whole-line-trim ()
   (interactive)
-  (kill-ring-save (line-beginning-position) (line-end-position)))
+  (kill-ring-save (buffer-substring (line-beginning-position)
+                                    (line-end-position))))
 
+(defun cut-whole-line-trim ()
+  (interactive)
+
+
+;;------------------------------------------------------------------------------
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
   (interactive)
@@ -455,7 +460,6 @@
   (message "Pushed mark to ring"))
 
 ;;------------------------------------------------------------------------------
-
 (defun jump-to-mark ()
   "Jumps to the local mark, respecting the `mark-ring' order. This is the same as using \\[set-mark-command] with the prefix argument."
   (interactive)
@@ -714,9 +718,9 @@ Version 2015-04-09"
 ;; Custom bindings
 
 (global-set-key (kbd "C-x k")           'kill-this-buffer)
-(global-set-key (kbd "C-M-;")           'next-file-buffer)
-;(global-set-key (kbd "C-M-'")           'push-mark-no-activate)
-;(global-set-key (kbd "C-M-;")           'jump-to-mark)
+;(global-set-key (kbd "C-M-;")           'switch-to-next-file-buffer)
+(global-set-key (kbd "C-M-'")           'push-mark-no-activate)
+(global-set-key (kbd "C-M-;")           'jump-to-mark)
 (global-set-key (kbd "C-c k")             (lambda ()
                                           (interactive)
                                           (let ((col (current-column)))
