@@ -438,16 +438,14 @@
 ;;  (interactive)
 ;;  (switch-to-buffer "*scratch*"))
 ;;
-;;(defun buffer-vector ()
-;;  (apply 'vector (buffer-list)))
-;;
-;;
-;;
-;;(defun switch-to-file-buff ()
-;;  (interactive)
-;;  (let ((buffers (buffer-vector)))
-;;    (do ((i 0 (1+ i)))
-;;        (
+(defun switch-to-file-buff ()
+  (interactive)
+  (dolist (buf (buffer-list))
+    (when (buffer-file-name buf)
+      (switch-to-buffer buf)
+      (return))))
+
+
 
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
