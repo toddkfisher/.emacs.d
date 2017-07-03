@@ -36,7 +36,7 @@
       bm-bg              isrch-bg
       par-match-fg       "purple"
       ;par-match-bg       "steel blue"
-      par-match-wgt      'bold
+      par-match-wgt      'normal
       lnum-fg            fl-comment
       lnum-bg            modeln-inactive-bg
       auctex-preview-bg  "DodgerBlue3"

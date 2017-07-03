@@ -5,6 +5,8 @@
                            ("melpa"     . "http://melpa.milkbox.net/packages/")))
   (package-initialize))
 
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
 ;;------------------------------------------------------------------------------
 ;; site-specific (e.g. windows/peppermint/bodhi etc) settings
 (load "~/.emacs.d/site-specific.el")
@@ -14,6 +16,7 @@
 (require 'dired) ;- so that dired-mode-map exists for key redef
 (require 'python) ;- so that python-mode-map exists for key redef
 (require 'scheme)
+(require 'kill-ring-ido)
 (load "~/.emacs.d/lua-mode") ;- custom version
 
 ;;------------------------------------------------------------------------------
@@ -345,13 +348,13 @@
    [unspecified "#1b181b" "#ca402b" "#918b3b" "#bb8a35" "#516aec" "#7b59c0" "#516aec" "#ab9bab"] t)
  '(auto-hscroll-mode t)
  '(blink-cursor-delay 1.1)
- '(blink-cursor-interval 0.6)
+ '(blink-cursor-interval 0.45)
  '(blink-cursor-mode t)
  '(blink-matching-delay 0)
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("d42f4f906ca69e5a5f1efa1af75b48dc865eb5b478edc2ac24b047f8aa1b5f01" "a01e0cf273ac7b5c1baeeebb296ef683deff7293b9a25c9b783883e7ebe12aed" "d9edc29a9b27d7098646c3315c5ab8fdf07638b1ab4f80360a521f845a3c5fb0" "87d34869134b5497549a25dff75367d68aed7a8e3da598c9fa4e060a4e1f948e" "e3164f469e6f7aa0ec451dd7b66ac79111bdd78d4cfec69e8bb9c66fca912a48" "a7571dfde3a54d069bc7969457b213023d69a7534a556b4c27e301cbac1be221" "5fa0947f1d0d999eee035069b8b65cc4f2f14e1717e1792ec3d80ae625e0f29f" "b335b10a1d293669d7493018b099f34cbca1e8fb8bd43db50096c9306a567f91" "e9f71e1e9e479c080612c0e6cb0109c7a9fc1dafeeec7b0fee075d23fa793370" "f2d8571772c7216c5dca60e00590f710b1c55e4b866c8c130d547e4a3f204e8b" "582e2e5490bc4416ea0481db6f5b2c7203426959f545c88273fa3220e3528d1d" "cc5f20e3da891112f77f14d3d1650f7faa3e1051b3f9f527dcf8d71039893ac9" "3cbcddac24a78361e0d69af42f5970ab99b0ba6ca9cb47bbbfbbe680362b0b20" "c5206ba2411b3665e02f3ce0fc5d8461790a9bad8b2bb7db6604856bcfcf8b3d" "fcfcd70b25718334c188f41b33f96da3b46b6093fc4cb94cd0b0d3063ed48ec5" "3a5007fa3d1fe8fee567c59e6cdd43f1924ab320cb938fe11745710a44cac30b" "157956dd11bb3f8cd6856cc32c6df31583086da13c96b480e25e6705c3765dcd" "868360d9afa25cb16ea603a5c78655acc21db2ea508acdc63b8acb93880b3440" "8e2ebb60baf42758a76565808251aa197556d9f751e6c6a55e811ecdbd69deca" "8464a1275056fb10d7f2e712c7e3750abbf6c3ac952a005ad7c1a8e2eece88ea" "df745aa43d57560c339941c1d68d4d91d0df6e984ac511a68209960b6abd0f6d" "23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
+    ("8515ae7d039f789977bc181c32b58e6d5f4fc5b4755007de0b3bd9688ff01fa4" "9dd99d56bdaf15779ca7cb73673c8ba8de4d3a2295ef83c91b9f32492e88b5ff" "f1ea3c92e3c82da1a649d23aec48f4ac222618883abcc5736df298227cd24373" "7601e46b2a73ab0d0d0b5a8e13b125f0660efebf1c7a05d87b4bd7304f90c9ad" "1a14a21d173f83ad9d95ec2af8bef5135087e9fce171730c92517dd2b33580f9" "bc982e953e8954acfd7d957038f33a3be03655b21bb18ab24323ab8ab1668e28" "d42f4f906ca69e5a5f1efa1af75b48dc865eb5b478edc2ac24b047f8aa1b5f01" "a01e0cf273ac7b5c1baeeebb296ef683deff7293b9a25c9b783883e7ebe12aed" "d9edc29a9b27d7098646c3315c5ab8fdf07638b1ab4f80360a521f845a3c5fb0" "87d34869134b5497549a25dff75367d68aed7a8e3da598c9fa4e060a4e1f948e" "e3164f469e6f7aa0ec451dd7b66ac79111bdd78d4cfec69e8bb9c66fca912a48" "a7571dfde3a54d069bc7969457b213023d69a7534a556b4c27e301cbac1be221" "5fa0947f1d0d999eee035069b8b65cc4f2f14e1717e1792ec3d80ae625e0f29f" "b335b10a1d293669d7493018b099f34cbca1e8fb8bd43db50096c9306a567f91" "e9f71e1e9e479c080612c0e6cb0109c7a9fc1dafeeec7b0fee075d23fa793370" "f2d8571772c7216c5dca60e00590f710b1c55e4b866c8c130d547e4a3f204e8b" "582e2e5490bc4416ea0481db6f5b2c7203426959f545c88273fa3220e3528d1d" "cc5f20e3da891112f77f14d3d1650f7faa3e1051b3f9f527dcf8d71039893ac9" "3cbcddac24a78361e0d69af42f5970ab99b0ba6ca9cb47bbbfbbe680362b0b20" "c5206ba2411b3665e02f3ce0fc5d8461790a9bad8b2bb7db6604856bcfcf8b3d" "fcfcd70b25718334c188f41b33f96da3b46b6093fc4cb94cd0b0d3063ed48ec5" "3a5007fa3d1fe8fee567c59e6cdd43f1924ab320cb938fe11745710a44cac30b" "157956dd11bb3f8cd6856cc32c6df31583086da13c96b480e25e6705c3765dcd" "868360d9afa25cb16ea603a5c78655acc21db2ea508acdc63b8acb93880b3440" "8e2ebb60baf42758a76565808251aa197556d9f751e6c6a55e811ecdbd69deca" "8464a1275056fb10d7f2e712c7e3750abbf6c3ac952a005ad7c1a8e2eece88ea" "df745aa43d57560c339941c1d68d4d91d0df6e984ac511a68209960b6abd0f6d" "23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
@@ -387,7 +390,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (rectangle-utils sr-speedbar imenu-anywhere c-eldoc nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region popup-kill-ring peg)))
+    (rectangle-utils sr-speedbar imenu-anywhere c-eldoc nasm-mode bury-successful-compilation markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package window-numbering bm move-text smex magit multiple-cursors visual-regexp expand-region peg)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#1A3734")
  '(pos-tip-foreground-color "#FFFFC8")
@@ -400,9 +403,9 @@
  '(send-mail-function (quote mailclient-send-it))
  '(shift-select-mode nil)
  '(show-paren-mode t)
+ '(show-paren-style (quote parenthesis))
+ '(show-paren-when-point-inside-paren t)
  '(standard-indent 2)
- '(sublimity-mode t)
- '(sublimity-scroll-drift-length 20)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
@@ -441,16 +444,22 @@
   (dolist (buff (cdr (buffer-list)))
     (when (buffer-file-name buff)
       (switch-to-buffer buff)
+
       (return))))
 
 (defun copy-whole-line-trim ()
   (interactive)
-  (kill-ring-save (buffer-substring (line-beginning-position)
-                                    (line-end-position))))
+  (kill-new (string-trim-left (string-trim-right
+                               (buffer-substring (line-beginning-position)
+                                                 (line-end-position))))))
 
-(defun cut-whole-line-trim ()
+(defun kill-whole-line-trim ()
   (interactive)
-
+  (kill-new (buffer-substring (line-beginning-position)
+                              (line-end-position)))
+  (kill-whole-line)
+  (setq kill-ring (cdr kill-ring))
+  (setq kill-ring-yank-pointer kill-ring))
 
 ;;------------------------------------------------------------------------------
 (defun push-mark-no-activate ()
@@ -469,15 +478,6 @@
 (defun tkf-make-frame ()
   (interactive)
   (make-frame `((font . ,default-font))))
-
-;;------------------------------------------------------------------------------
-;; From emacswiki
-(defun copy-line (arg)
-      "Copy lines (as many as prefix argument) in the kill ring"
-      (interactive "p")
-      (kill-ring-save (line-beginning-position)
-                      (line-beginning-position (+ 1 arg)))
-      (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
 
 ;;------------------------------------------------------------------------------
 ;; From stackoverflow
@@ -583,7 +583,7 @@ Version 2015-04-09"
                  (line-end-position)
                  (point))))
     (move-beginning-of-line nil)
-    (while (and (looking-at " ")
+    (while (and (looking-at "[\t ]")
                 (< (point) pos))
       (forward-char))
     (if (>= (point) pos)
@@ -726,7 +726,9 @@ Version 2015-04-09"
                                           (let ((col (current-column)))
                                             (kill-whole-line)
                                             (move-to-column col t))))
-(global-set-key (kbd "C-c c")           'tkf-insert-divider-comment)
+(global-set-key (kbd "C-c c")           'copy-whole-line-trim)
+(global-set-key (kbd "C-c x")           'kill-whole-line-trim)
+(global-set-key (kbd "C-c w")           'copy-line)
 (global-set-key (kbd "C-c j")           (lambda () (interactive) (join-line -1)))
 (global-set-key (kbd "C-c n")           'org-capture)
 (global-set-key (kbd "C-c p")           'toggle-sticky-buffer-window)
@@ -739,8 +741,7 @@ Version 2015-04-09"
                                           (xah-search-current-word 1)))
 (global-set-key (kbd "C-c r")           (lambda () (interactive)
                                           (xah-search-current-word -1)))
-(global-set-key (kbd "C-c y")           'popup-kill-ring)
-(global-set-key (kbd "C-c w")           'copy-line)
+(global-set-key (kbd "C-c y")           'kill-ring-ido)
 (global-set-key (kbd "C-.")             'mc/mark-next-like-this)
 (global-set-key (kbd "C-,")             'mc/mark-previous-like-this)
 (global-set-key (kbd "C-/")             'mc/mark-all-like-this)
@@ -773,7 +774,7 @@ Version 2015-04-09"
 
 (define-key dired-mode-map (kbd "o") 'xahlee-open-in-external-app)
 
-;;------------------------------------------------------------------------------
+;;-----------------------------------------------------
 ;; Lisp/scheme mode customizations
 
 (cond ((eq system-type 'windows-nt)
