@@ -115,15 +115,17 @@
   (setq speedbar-fetch-etags-command "etags")
   (setq speedbar-show-unknown-files nil)
   (setq speedbar-smart-directory-expand-flag t)
-  (setq speedbar-tag-hierarchy-method (quote (speedbar-sort-tag-hierarchy)))
-  (setq speedbar-tag-split-minimum-length 2000)
+  (setq speedbar-tag-hierarchy-method (quote (speedbar-prefix-group-tag-hierarchy
+                                              speedbar-sort-tag-hierarchy)))
   (setq speedbar-use-images t)
   (setq speedbar-supported-extension-expressions
    (quote
     (".lua" ".org" ".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?"
      ".tex\\(i\\(nfo\\)?\\)?" ".el" ".emacs" ".l" ".lsp"
      ".p" ".java" ".js" ".f\\(90\\|77\\|or\\)?" ".scm")))
-  (setq speedbar-tag-group-name-minimum-length 10)
+  (setq speedbar-tag-group-name-minimum-length 25)
+  (setq speedbar-tag-regroup-maximum-length 32)
+  (setq speedbar-tag-split-minimum-length 10)
   (setq speedbar-update-flag t)
   (setq speedbar-use-imenu-flag t)
   (setq speedbar-verbosity-level 0)
@@ -135,19 +137,22 @@
 (use-package sr-speedbar
   :init
   (setq sr-speedbar-auto-refresh nil)
-  (setq sr-speedbar-default-width 25)
-  (setq sr-speedbar-max-width 25)
+  (setq sr-speedbar-default-width 35)
+  (setq sr-speedbar-max-width 35)
   (setq sr-speedbar-right-side nil))
 
 ;;------------------------------------------------------------------------------
 (use-package imenu
   :init
+  (setq imenu-auto-rescan t)
   (add-hook 'c-mode-common-hook
             (lambda ()
               (add-to-list 'imenu-generic-expression
                            '("Macro" "^\\s-*\#\\s-*define\\s-+\\([a-zA-Z_][a-zA-Z_0-9]*\\)" 1))
               (add-to-list 'imenu-generic-expression
-                           '("Enum" "^\\s-*enum\\s-+\\([a-zA-Z_][a-zA-Z_0-9]*\\)" 1)))))
+                           '("Enum" "^\\s-*enum\\s-+\\([a-zA-Z_][a-zA-Z_0-9]*\\)" 1))
+              (add-to-list 'imenu-generic-expression
+                           '("Sect" "^\\s-*///\\s-*\\(.*\\)$" 1)))))
 
 ;;------------------------------------------------------------------------------
 (use-package eshell
