@@ -13,7 +13,7 @@
       fl-func-fg         "SkyBlue3"
       fl-comment         "grey60"
       comment-slant      'italic
-      sb_height_mag      0.65
+      sb_height_mag      0.75
       bgr                'dark
       notice             "IndianRed3"
       paren-mismatch     notice
