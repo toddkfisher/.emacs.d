@@ -772,6 +772,8 @@ Version 2015-04-09"
 (global-set-key (kbd "<C-right>")       'tkf-forward-blank)
 (global-set-key (kbd "<C-left>")        'tkf-back-blank)
 (global-set-key (kbd "C-M-<return>")    'hs-toggle-hiding)
+(global-set-key (kbd "M-f")             'forward-to-word)
+(global-set-key (kbd "M-b")             'backward-to-word)
 
 ;;--- The "a" key won't work properly in dired mode when a window is protected
 ;;    so unprotect it briefly, do the "a"-thing, then reprotect.
