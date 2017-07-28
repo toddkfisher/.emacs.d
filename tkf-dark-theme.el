@@ -12,6 +12,7 @@
       fl-func-slant      'normal
       fl-func-fg         "SkyBlue3"
       fl-comment         "grey60"
+      fl-var             "khaki"
       comment-slant      'italic
       sb_height_mag      0.77
       bgr                'dark
@@ -165,7 +166,7 @@
  `(font-lock-regexp-grouping-construct   ((t (:inherit default))))
  `(font-lock-string-face                 ((((class color) (min-colors 88) (background ,bgr)) (:slant ,string-slant :foreground ,fl-string))))
  `(font-lock-type-face                   ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
- `(font-lock-variable-name-face          ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
+ `(font-lock-variable-name-face          ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :foreground ,fl-var))))
  `(font-lock-warning-face                ((((class color) (min-colors 88) (background ,bgr)) (:inherit error))))
  `(fringe                                ((((class color) (min-colors 88) (background ,bgr)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg))))
  `(gnus-button                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
@@ -269,9 +270,9 @@
  `(message-separator                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(minibuffer-prompt                     ((t (:inherit default))))
  `(mm-uu-extract                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box t :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg))))
+ `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :height 0.90))))
  `(mode-line-highlight                   ((((class color) (min-colors 88)) (:box nil :weight bold))))
- `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :weight normal))))
+ `(mode-line-inactive                    ((((class color) (min-colors 88)) (:height 0.90 :background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :weight normal))))
  `(next-error                            ((t (:inherit error))))
  `(org-agenda-column-dateline            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(org-block                             ((t (:inherit default))))

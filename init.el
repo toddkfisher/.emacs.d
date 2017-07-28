@@ -6,12 +6,10 @@
   (package-initialize))
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
-
-;;------------------------------------------------------------------------------
-;; site-specific (e.g. windows/peppermint/bodhi etc) settings
 (load "~/.emacs.d/site-specific.el")
 
-;;------------------------------------------------------------------------------
+;;* Requires/includes
+
 (require 'cc-mode) ;- so that c-mode-map exists for key redef
 (require 'dired) ;- so that dired-mode-map exists for key redef
 (require 'python) ;- so that python-mode-map exists for key redef
@@ -19,12 +17,10 @@
 (require 'kill-ring-ido)
 (load "~/.emacs.d/lua-mode") ;- custom version
 
-;;------------------------------------------------------------------------------
 (use-package bury-successful-compilation
   :config
   (bury-successful-compilation 1))
 
-;;------------------------------------------------------------------------------
 (use-package recentf
   :init
   (setq recentf-max-menu-items 25)
@@ -37,7 +33,6 @@
   :config
   (recentf-mode 1))
 
-;;------------------------------------------------------------------------------
 (use-package multiple-cursors
   :init
   (setq mc/mode-line
@@ -49,7 +44,6 @@
               (face mode-line))
             (mc/num-cursors)))))))
 
-;;------------------------------------------------------------------------------
 (use-package smex
   :init
   (smex-initialize)
@@ -57,12 +51,10 @@
   :bind
   ("M-x" . smex))
 
-;;------------------------------------------------------------------------------
 (use-package ido-ubiquitous
   :config
   (ido-ubiquitous-mode t))
 
-;;------------------------------------------------------------------------------
 (use-package bm
   :init
   (setq bm-highlight-style (quote bm-highlight-only-fringe))
@@ -73,20 +65,16 @@
    ("C-M-<up>"    . bm-previous)
    ("C-M-<down>"  . bm-next)))
 
-;;------------------------------------------------------------------------------
-
 (use-package idomenu
   :bind
   (("C-c i" . idomenu)))
 
-;;------------------------------------------------------------------------------
 (use-package eldoc
   :config
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode))
 
-;;------------------------------------------------------------------------------
 (use-package org
   :init
   (setq-default org-export-html-preamble nil)
@@ -107,7 +95,6 @@
            "* %U %?")
           )))
 
-;;------------------------------------------------------------------------------
 (use-package speedbar
   :init
   (setq speedbar-directory-unshown-regexp "^$")
@@ -137,14 +124,19 @@
 (use-package sr-speedbar
   :init
   (setq sr-speedbar-auto-refresh nil)
-  (setq sr-speedbar-default-width 27)
-  (setq sr-speedbar-max-width 27)
+  (setq sr-speedbar-default-width 23)
+  (setq sr-speedbar-max-width 23)
   (setq sr-speedbar-right-side nil))
 
-;;------------------------------------------------------------------------------
 (use-package imenu
   :init
   (setq imenu-auto-rescan t)
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda ()
+              (add-to-list 'imenu-generic-expression
+                           '("use-package" "^\\s-*(use-package\\s-*\\(.+\\)$" 1))
+              (add-to-list 'imenu-generic-expression
+                           '("Sect" "^\\s-*;;\\*\\s-*\\(.*\\)$" 1))))
   (add-hook 'c-mode-common-hook
             (lambda ()
               (add-to-list 'imenu-generic-expression
@@ -154,7 +146,6 @@
               (add-to-list 'imenu-generic-expression
                            '("Sect" "^\\s-*///\\s-*\\(.*\\)$" 1)))))
 
-;;------------------------------------------------------------------------------
 (use-package eshell
   :init
   (setq eshell-highlight-prompt t)
@@ -185,7 +176,6 @@
                                                       (ring-elements eshell-history-ring))))))
               (local-set-key (kbd "C-c C-h") 'eshell-list-history))))
 
-;;------------------------------------------------------------------------------
 (use-package ido
   :init
   ;; This (below) effectively disables the following annoying behavior of
@@ -204,7 +194,6 @@
   :config
   (ido-mode (quote both)))
 
-;;------------------------------------------------------------------------------
 (use-package ido-vertical-mode
   :init
   (setq ido-vertical-indicator "»")
@@ -212,7 +201,6 @@
   (ido-vertical-mode t)
   (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
-;;------------------------------------------------------------------------------
 (use-package cc-mode
   :config
   (setq-default c-basic-offset 2)
@@ -225,17 +213,10 @@
   (add-hook 'c-mode-common-hook (lambda ()
                                   (modify-syntax-entry ?_ "w" c-mode-syntax-table))))
 
-;;------------------------------------------------------------------------------
 (use-package c-eldoc
   :config
   (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode))
 
-;;------------------------------------------------------------------------------
-(use-package bury-successful-compilation
-  :config
-  (bury-successful-compilation 1))
-
-;;------------------------------------------------------------------------------
 ;; Info setup for custom info files.
 (use-package info
   :init
@@ -243,7 +224,8 @@
             (lambda ()
               (setq Info-additional-directory-list Info-default-directory-list))))
 
-;;------------------------------------------------------------------------------
+;; Unfortunately cua mode must be enabled to use its awesome rectangle commands
+;; We just disable the cua keys here and pretend that it doesn't exist.
 (use-package cua-mode
   :init
   (setq cua-enable-cua-keys nil)
@@ -253,20 +235,17 @@
   ("C-c RET" . cua-cancel)
   ("C-c TAB" . cua-set-rectangle-mark))
 
-;;------------------------------------------------------------------------------
 (use-package lua-mode
   :init
   (setq lua-always-show nil)
   (setq lua-indent-level 2)
   (setq lua-prefix-key "C-c"))
 
-;;------------------------------------------------------------------------------
 (use-package dired
   :init
   (setq dired-find-subdir t)
   (setq dired-use-ls-dired nil))
 
-;;------------------------------------------------------------------------------
 (use-package grep
   :init
   (setq grep-command "grep -in")
@@ -277,39 +256,36 @@
   (setq grep-template "grep <X> <C> -n -e <R> <F>")
   (setq grep-use-null-device t))
 
-;;------------------------------------------------------------------------------
 (use-package remember
   :init
   (setq remember-leader-text "--------------- ")
   (setq remember-mode-hook (quote (org-remember-apply-template))))
 
-;;------------------------------------------------------------------------------
-;; World's best modeline
+;;* World's best modeline
+
 (setq-default mode-line-format
               (list mode-line-buffer-identification
-                    "│ "  " │"
+                    " ("  ") ("
                     ;; '%0x' - fixed-width prevents flickering
                     "%06p C%02c"
-                    " │ "
+                    ") ("
                     '(:eval (if (buffer-modified-p) "M" "-"))
                     '(:eval (if buffer-read-only    "R" "-"))
                     '(:eval (if (window-dedicated-p (selected-window)) "D" "-"))
-                    " │ "
+                    ") ("
                     '(:eval (last-dir default-directory))
-                    " │ "
+                    " "
                     mode-line-modes
-                    " │ "
+                    " "
                     '(:eval vc-mode)
                     ))
 
-;;------------------------------------------------------------------------------
-;; work around the bogus "-remote" flag specified by browse-url-firefox
-(setq browse-url-browser-function 'browse-url-generic)
+;;* Misc initialization
 
-;;------------------------------------------------------------------------------
-;; Misc initialization
 (server-start)
 (window-numbering-mode t)
+;; work around the bogus "-remote" flag specified by browse-url-firefox
+(setq browse-url-browser-function 'browse-url-generic)
 (setq-default indent-tabs-mode nil)
 (setq scroll-step 1)
 (setq-default tab-width 4)
@@ -338,6 +314,8 @@
 (setq-default truncate-lines t)
 (load-theme 'tkf-dark t)
 
+;;* Vars set by 'custom'
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -364,7 +342,7 @@
  '(compile-command "./build.sh")
  '(custom-safe-themes
    (quote
-    ("9ebfb6fcd837a1e13655c17d666015a731d1824c17fd465c1a74bf04363a3e7f" "f55d21ee2bc4a9a9b41926772ec5a8fd2016e1562375d0633fc49a42bba555e6" "d89c2d2a01c0d1b3205988df818d64a5961f3569dde74aa63f205ea10d37c8e2" "786b975bae95aec37cdedb1c70441aa7ff358fc359c8e1802af7fe88b61e8de3" "430fea33773e79263cae31cfa553687aa7d1d9d618aea3e8c4e74a20d0387105" "c402aece67579c30733a5c95119a7222e2969d9bfb13fb711f8dacba428d0a01" "cc93274abd876bd7afee024fa6f0ac3ceb3cf12c34137e30b4cc30cfd05f0d90" "26ae46706518980608bc920d227d2f2e1c26b303fcb7e3fb1cbb31a09c8f358d" "601651546bd1b9223a564620c0e44e49f638f98ce7163ec24fa3db0944301b4b" "be88db69be3da30e47773e915650410950789ae4cf6d38815638e02232423979" "fc2d43ba033e9cf245161317843cba6656658b4f9a132ae25957d73cfa739152" "539532b6418ef4c4e03b927296257cd246062c4936ace5e556f82f07940c3a46" "ea163dd6e9b151c739003105c03e21ca41becd4f50316aaab57114b6bd3ec48b" "a6bd4eb1e7c3cfdfd87fec367fd44ac27d12428473db5080835a245fdc271dad" "e5f3ad79e5098b0fa58d8e2f26898c01571f9aaae074b4deeeee050b2365ad5d" "4bbad25e0215e309dccb5b25c15df55a4082111ea66ee4ae4c353403bae34b31" "49d7058b1ad35faa88cdd391e3e4bc34f78c24a6bde7dc2f9946b448574c7165" "7c3349025bf8bb160c09c4963caacce4e00be64e9a070cfabfc901ea4fbc9c12" "8fe83a62dc0f1118811cd82ebf60ab6d9471562015bc2b73ae3ec379e796c536" "12976c3dd7996ac91fe738ae8b58dbc75f7875a60cadaffd72f341a04a6b769a" "35e7319643d6f93589e8eea1f89ddf4fbcb55a2e234f3e97270c608c360f8707" "90b0191e74c531ba39ae4ea755d9c9166fdc6fa5ac00711a0d6aa39c31def652" "5763c8bd394b3439d24c2caafef458b834502e01f272ede0e789bb41fbe3dd2a" "dab1295d80638d517c0dd3312ddc604f98f96ab416d4834f93f3c30619be6a44" "815eec341b8596a0ee15adfb0dcd455d6ab22d7851804d9bf051f25c4a7e6792" "a170111e5f294b21941d40c5641c75248381a3bb335e30d9d27ed8419fd23745" "0e854ae02392414bba1a12feb907224e37e0bb745f5560bf5d79ab4bfbe9f3e6" "58545c5216b4acc0dd02cfe16d54195a424bdf9cec7e237b3dd36d04c02473af" "ef85b91c593f6549bdc9e548c2184285f5c51e974b5be3c4ed6dd454028719ae" "db0cbdaf1801059611fb8a6e339d653fbe8070cea40d4137ca84f46ea0dcb47f" "b421ae0446bd9f6db68c5936a6408ed4977d2230f16b011c8c267010ac8e085c" "0421f946e871c2ce8696e36479c17e546ef7a9f40ea75b6c9dad43043794d61a" "7ee4eae903199970c573b56c7e71615c17645ef0fe61893cc2c109514bfa57f6" "8515ae7d039f789977bc181c32b58e6d5f4fc5b4755007de0b3bd9688ff01fa4" "9dd99d56bdaf15779ca7cb73673c8ba8de4d3a2295ef83c91b9f32492e88b5ff" "f1ea3c92e3c82da1a649d23aec48f4ac222618883abcc5736df298227cd24373" "7601e46b2a73ab0d0d0b5a8e13b125f0660efebf1c7a05d87b4bd7304f90c9ad" "1a14a21d173f83ad9d95ec2af8bef5135087e9fce171730c92517dd2b33580f9" "bc982e953e8954acfd7d957038f33a3be03655b21bb18ab24323ab8ab1668e28" "d42f4f906ca69e5a5f1efa1af75b48dc865eb5b478edc2ac24b047f8aa1b5f01" "a01e0cf273ac7b5c1baeeebb296ef683deff7293b9a25c9b783883e7ebe12aed" "d9edc29a9b27d7098646c3315c5ab8fdf07638b1ab4f80360a521f845a3c5fb0" "87d34869134b5497549a25dff75367d68aed7a8e3da598c9fa4e060a4e1f948e" "e3164f469e6f7aa0ec451dd7b66ac79111bdd78d4cfec69e8bb9c66fca912a48" "a7571dfde3a54d069bc7969457b213023d69a7534a556b4c27e301cbac1be221" "5fa0947f1d0d999eee035069b8b65cc4f2f14e1717e1792ec3d80ae625e0f29f" "b335b10a1d293669d7493018b099f34cbca1e8fb8bd43db50096c9306a567f91" "e9f71e1e9e479c080612c0e6cb0109c7a9fc1dafeeec7b0fee075d23fa793370" "f2d8571772c7216c5dca60e00590f710b1c55e4b866c8c130d547e4a3f204e8b" "582e2e5490bc4416ea0481db6f5b2c7203426959f545c88273fa3220e3528d1d" "cc5f20e3da891112f77f14d3d1650f7faa3e1051b3f9f527dcf8d71039893ac9" "3cbcddac24a78361e0d69af42f5970ab99b0ba6ca9cb47bbbfbbe680362b0b20" "c5206ba2411b3665e02f3ce0fc5d8461790a9bad8b2bb7db6604856bcfcf8b3d" "fcfcd70b25718334c188f41b33f96da3b46b6093fc4cb94cd0b0d3063ed48ec5" "3a5007fa3d1fe8fee567c59e6cdd43f1924ab320cb938fe11745710a44cac30b" "157956dd11bb3f8cd6856cc32c6df31583086da13c96b480e25e6705c3765dcd" "868360d9afa25cb16ea603a5c78655acc21db2ea508acdc63b8acb93880b3440" "8e2ebb60baf42758a76565808251aa197556d9f751e6c6a55e811ecdbd69deca" "8464a1275056fb10d7f2e712c7e3750abbf6c3ac952a005ad7c1a8e2eece88ea" "df745aa43d57560c339941c1d68d4d91d0df6e984ac511a68209960b6abd0f6d" "23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
+    ("025711602dc881c32ea6ada139a2dfe9282bd3eb2151de3e0ed084ecb9e4d513" "5a72c526aaf210809b5569fd90d8f71832e8d1fa42087d4ffb94d35f1ce789cd" "6783578b0556b6fd93a08c157455985074c93e3bb6e95e28ac47aae8ad0dff69" "e29ba2933d87ec307b57357509ca3f88a4884a3b1b6e05c7b939cb68f8e04a3e" "9ebfb6fcd837a1e13655c17d666015a731d1824c17fd465c1a74bf04363a3e7f" "f55d21ee2bc4a9a9b41926772ec5a8fd2016e1562375d0633fc49a42bba555e6" "d89c2d2a01c0d1b3205988df818d64a5961f3569dde74aa63f205ea10d37c8e2" "786b975bae95aec37cdedb1c70441aa7ff358fc359c8e1802af7fe88b61e8de3" "430fea33773e79263cae31cfa553687aa7d1d9d618aea3e8c4e74a20d0387105" "c402aece67579c30733a5c95119a7222e2969d9bfb13fb711f8dacba428d0a01" "cc93274abd876bd7afee024fa6f0ac3ceb3cf12c34137e30b4cc30cfd05f0d90" "26ae46706518980608bc920d227d2f2e1c26b303fcb7e3fb1cbb31a09c8f358d" "601651546bd1b9223a564620c0e44e49f638f98ce7163ec24fa3db0944301b4b" "be88db69be3da30e47773e915650410950789ae4cf6d38815638e02232423979" "fc2d43ba033e9cf245161317843cba6656658b4f9a132ae25957d73cfa739152" "539532b6418ef4c4e03b927296257cd246062c4936ace5e556f82f07940c3a46" "ea163dd6e9b151c739003105c03e21ca41becd4f50316aaab57114b6bd3ec48b" "a6bd4eb1e7c3cfdfd87fec367fd44ac27d12428473db5080835a245fdc271dad" "e5f3ad79e5098b0fa58d8e2f26898c01571f9aaae074b4deeeee050b2365ad5d" "4bbad25e0215e309dccb5b25c15df55a4082111ea66ee4ae4c353403bae34b31" "49d7058b1ad35faa88cdd391e3e4bc34f78c24a6bde7dc2f9946b448574c7165" "7c3349025bf8bb160c09c4963caacce4e00be64e9a070cfabfc901ea4fbc9c12" "8fe83a62dc0f1118811cd82ebf60ab6d9471562015bc2b73ae3ec379e796c536" "12976c3dd7996ac91fe738ae8b58dbc75f7875a60cadaffd72f341a04a6b769a" "35e7319643d6f93589e8eea1f89ddf4fbcb55a2e234f3e97270c608c360f8707" "90b0191e74c531ba39ae4ea755d9c9166fdc6fa5ac00711a0d6aa39c31def652" "5763c8bd394b3439d24c2caafef458b834502e01f272ede0e789bb41fbe3dd2a" "dab1295d80638d517c0dd3312ddc604f98f96ab416d4834f93f3c30619be6a44" "815eec341b8596a0ee15adfb0dcd455d6ab22d7851804d9bf051f25c4a7e6792" "a170111e5f294b21941d40c5641c75248381a3bb335e30d9d27ed8419fd23745" "0e854ae02392414bba1a12feb907224e37e0bb745f5560bf5d79ab4bfbe9f3e6" "58545c5216b4acc0dd02cfe16d54195a424bdf9cec7e237b3dd36d04c02473af" "ef85b91c593f6549bdc9e548c2184285f5c51e974b5be3c4ed6dd454028719ae" "db0cbdaf1801059611fb8a6e339d653fbe8070cea40d4137ca84f46ea0dcb47f" "b421ae0446bd9f6db68c5936a6408ed4977d2230f16b011c8c267010ac8e085c" "0421f946e871c2ce8696e36479c17e546ef7a9f40ea75b6c9dad43043794d61a" "7ee4eae903199970c573b56c7e71615c17645ef0fe61893cc2c109514bfa57f6" "8515ae7d039f789977bc181c32b58e6d5f4fc5b4755007de0b3bd9688ff01fa4" "9dd99d56bdaf15779ca7cb73673c8ba8de4d3a2295ef83c91b9f32492e88b5ff" "f1ea3c92e3c82da1a649d23aec48f4ac222618883abcc5736df298227cd24373" "7601e46b2a73ab0d0d0b5a8e13b125f0660efebf1c7a05d87b4bd7304f90c9ad" "1a14a21d173f83ad9d95ec2af8bef5135087e9fce171730c92517dd2b33580f9" "bc982e953e8954acfd7d957038f33a3be03655b21bb18ab24323ab8ab1668e28" "d42f4f906ca69e5a5f1efa1af75b48dc865eb5b478edc2ac24b047f8aa1b5f01" "a01e0cf273ac7b5c1baeeebb296ef683deff7293b9a25c9b783883e7ebe12aed" "d9edc29a9b27d7098646c3315c5ab8fdf07638b1ab4f80360a521f845a3c5fb0" "87d34869134b5497549a25dff75367d68aed7a8e3da598c9fa4e060a4e1f948e" "e3164f469e6f7aa0ec451dd7b66ac79111bdd78d4cfec69e8bb9c66fca912a48" "a7571dfde3a54d069bc7969457b213023d69a7534a556b4c27e301cbac1be221" "5fa0947f1d0d999eee035069b8b65cc4f2f14e1717e1792ec3d80ae625e0f29f" "b335b10a1d293669d7493018b099f34cbca1e8fb8bd43db50096c9306a567f91" "e9f71e1e9e479c080612c0e6cb0109c7a9fc1dafeeec7b0fee075d23fa793370" "f2d8571772c7216c5dca60e00590f710b1c55e4b866c8c130d547e4a3f204e8b" "582e2e5490bc4416ea0481db6f5b2c7203426959f545c88273fa3220e3528d1d" "cc5f20e3da891112f77f14d3d1650f7faa3e1051b3f9f527dcf8d71039893ac9" "3cbcddac24a78361e0d69af42f5970ab99b0ba6ca9cb47bbbfbbe680362b0b20" "c5206ba2411b3665e02f3ce0fc5d8461790a9bad8b2bb7db6604856bcfcf8b3d" "fcfcd70b25718334c188f41b33f96da3b46b6093fc4cb94cd0b0d3063ed48ec5" "3a5007fa3d1fe8fee567c59e6cdd43f1924ab320cb938fe11745710a44cac30b" "157956dd11bb3f8cd6856cc32c6df31583086da13c96b480e25e6705c3765dcd" "868360d9afa25cb16ea603a5c78655acc21db2ea508acdc63b8acb93880b3440" "8e2ebb60baf42758a76565808251aa197556d9f751e6c6a55e811ecdbd69deca" "8464a1275056fb10d7f2e712c7e3750abbf6c3ac952a005ad7c1a8e2eece88ea" "df745aa43d57560c339941c1d68d4d91d0df6e984ac511a68209960b6abd0f6d" "23b0a10ce874449818aa478c63265755639ac12ba5e1562ea012f99c3fdccea7" "d145690625dc0b4f86fbdd8651fbbb861572c57505edf4fd91be5fead58d692d" "0ee3fc6d2e0fc8715ff59aed2432510d98f7e76fe81d183a0eb96789f4d897ca" "98d0ff69fd11d6fca210b5068022d504b6eea5208233dec38212baf7201c811f" "b04153b12fbb67935f6898f38eb985ec62511fd1df6e2262069efa8565874195" "98e568e0b988a0ef8c9abdb9730ee909929167ff8932ecfb33d8cec8c3432935" "cdc683669f9425d9faf91f2fb07a508178c9e9c20ec3ce10cf6f6c2e6ac628c0" "df97fc9066acac64a021021021a809e7c421ba7c8bc7669095c6cf32f72edc22")))
  '(default-justification (quote full))
  '(desktop-save nil)
  '(desktop-save-mode nil)
@@ -448,7 +426,7 @@
  '(woman-locale "en_US.UTF-8"))
 
 ;;------------------------------------------------------------------------------
-;; MISC FUNCTIONS THAT I'VE SNAGGED OR WRITTEN
+;; Misc functions that i've snagged or written
 
 (defun switch-to-next-file-buffer ()
   (interactive)
@@ -474,7 +452,6 @@
   (setq kill-ring (cdr kill-ring))
   (setq kill-ring-yank-pointer kill-ring))
 
-;;------------------------------------------------------------------------------
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
   (interactive)
@@ -662,16 +639,6 @@ Version 2015-04-09"
           (t
            (funcall dashes)))))
 
-(if (eq system-type 'windows-nt)
-    ;; setting the PC keyboard's various keys to
-    ;; Super or Hyper, for emacs running on Windows.
-    ;; From: http://xahlee.blogspot.com/2010/08/emacs-hyper-and-super-keys.html
-    (setq w32-pass-lwindow-to-system    nil
-          w32-pass-rwindow-to-system    nil
-          w32-pass-apps-to-system       nil
-          w32-lwindow-modifier          'super   ;; Left Windows key
-          w32-rwindow-modifier          'super)) ;; Right Windows key
-
 (defun leftmost-nonblank-position ()
   (let ((pos nil))
     (save-excursion
@@ -724,11 +691,7 @@ Version 2015-04-09"
   (let ((f (ido-completing-read "ORG:" org-file-list)))
     (find-file (concat org-directory "/" f))))
 
-;; END OF MISC FUNCTIONS THAT I'VE SNAGGED
-;;------------------------------------------------------------------------------
-
-;;------------------------------------------------------------------------------
-;; Custom bindings
+;;* Custom keybindings.
 
 (global-set-key (kbd "C-x k")           'kill-this-buffer)
 (global-set-key (kbd "C-;")             'switch-to-next-file-buffer)
@@ -756,6 +719,18 @@ Version 2015-04-09"
 (global-set-key (kbd "C-c r")           (lambda () (interactive)
                                           (xah-search-current-word -1)))
 (global-set-key (kbd "C-c y")           'kill-ring-ido)
+;; C-c <digit> deletes a numbered window (indicated by the presence of a second argument to
+;;                                        (select-window-by-number ...)
+(global-set-key (kbd "C-c 1")           (lambda () (interactive) (select-window-by-number 1 t)))
+(global-set-key (kbd "C-c 2")           (lambda () (interactive) (select-window-by-number 2 t)))
+(global-set-key (kbd "C-c 3")           (lambda () (interactive) (select-window-by-number 3 t)))
+(global-set-key (kbd "C-c 4")           (lambda () (interactive) (select-window-by-number 4 t)))
+(global-set-key (kbd "C-c 5")           (lambda () (interactive) (select-window-by-number 5 t)))
+(global-set-key (kbd "C-c 6")           (lambda () (interactive) (select-window-by-number 6 t)))
+(global-set-key (kbd "C-c 7")           (lambda () (interactive) (select-window-by-number 7 t)))
+(global-set-key (kbd "C-c 8")           (lambda () (interactive) (select-window-by-number 8 t)))
+(global-set-key (kbd "C-c 9")           (lambda () (interactive) (select-window-by-number 9 t)))
+(global-set-key (kbd "C-c 0")           (lambda () (interactive) (select-window-by-number 0 t)))
 (global-set-key (kbd "C-.")             'mc/mark-next-like-this)
 (global-set-key (kbd "C-,")             'mc/mark-previous-like-this)
 (global-set-key (kbd "C-/")             'mc/mark-all-like-this)
@@ -776,8 +751,8 @@ Version 2015-04-09"
 (global-set-key (kbd "M-f")             'forward-to-word)
 (global-set-key (kbd "M-b")             'backward-to-word)
 
-;;--- The "a" key won't work properly in dired mode when a window is protected
-;;    so unprotect it briefly, do the "a"-thing, then reprotect.
+;; The "a" key won't work properly in dired mode when a window is protected
+;; so unprotect it briefly, do the "a"-thing, then reprotect.
 (define-key dired-mode-map (kbd "a")
   #'(lambda ()
       (interactive "")
@@ -790,16 +765,14 @@ Version 2015-04-09"
 
 (define-key dired-mode-map (kbd "o") 'xahlee-open-in-external-app)
 
-;;-----------------------------------------------------
-;; Lisp/scheme mode customizations
+;;* Lisp/scheme mode customizations
 
 (cond ((eq system-type 'windows-nt)
        (setq scheme-program-name "gracket-text.exe"))
       ((eq system-type 'gnu/linux)
        (setq scheme-program-name "gracket-text")))
 
-;;------------------------------------------------------------------------------
-;; Python-mode customizationsp
+;;* Python-mode customizationsp
 
 (setq-default python-indent 4)
 (setq-default py-indent-offset 4)
