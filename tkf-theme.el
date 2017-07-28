@@ -1,14 +1,14 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "gray50"
+(setq bg                 "grey56"
       bgr                'dark
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "grey10"
+      fg                 "black"
       kw                 fg
       cursor             "yellow"
       fl-string          "DarkSlateBlue"
       string-slant       'normal
-      fl-func-underline  nil
+      fl-func-underline  t
       fl-func-wgt        'bold
       fl-func-slant      'normal
       fl-func-fg         fg
@@ -17,7 +17,7 @@
       sb_height_mag      0.75
       notice             "firebrick"
       paren-mismatch     notice
-      rgn-bg             "#A7A8AF"
+      rgn-bg             "gray75"
       isrch-bg           notice
       isrch-fg           "white"
       lzy-hi             isrch-bg
@@ -26,7 +26,6 @@
       grp-0              "red4"
       grp-1              "red3"
       grp-2              "red2"
-      hl-ln-underline    t
       modeln-bg          "sandy brown"
       modeln-fg          "grey15"
       modeln-inactive-fg "gray75"

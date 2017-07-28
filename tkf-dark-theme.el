@@ -2,7 +2,7 @@
 (setq bg                 "#1d2021" ;"#2c2c20"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "#eeeeec"
+      fg                 "seashell3" ;"#eeeee3"
       kw                 "LightSteelBlue4"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
@@ -11,7 +11,7 @@
       fl-func-wgt        'bold
       fl-func-slant      'normal
       fl-func-fg         "SkyBlue3"
-      fl-comment         "grey60"
+      fl-comment         "grey45"
       comment-slant      'italic
       sb_height_mag      0.77
       bgr                'dark
