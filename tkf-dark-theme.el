@@ -1,8 +1,8 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "#1d2021" ;"#2c2c20"
+(setq bg                 "#1d2021"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "seashell3" ;"#eeeee3"
+      fg                 "#dcdcdc" ;"#eeeee3"
       kw                 "LightSteelBlue4"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
@@ -555,8 +555,8 @@
  `(mc/cursor-face                        ((t (:interit cursor :foreground ,cursor))))
  `(mc/cursor-bar-face                    ((t (:interit cursor :foreground ,cursor))))
  `(racket-keyword-argument-face          ((t (:interit font-lock-keyword-face))))
- `(racket-paren-face                     ((t (:interit font-lock-keyword-face))))
- `(racket-selfeval-face                  ((t (:interit font-lock-keyword-face))))
+ ;`(racket-paren-face                     ((t (:interit font-lock-keyword-face))))
+ ;`(racket-selfeval-face                  ((t (:interit font-lock-keyword-face))))
 )
 
 (when load-file-name
