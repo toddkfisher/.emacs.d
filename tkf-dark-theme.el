@@ -2,7 +2,7 @@
 (setq bg                 "#1d2021"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "#dcdcdc" ;"#eeeee3"
+      fg                 "#ccdcdc" ;"#eeeee3"
       kw                 "LightSteelBlue4"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
@@ -15,7 +15,8 @@
       fl-var             "LightSteelBlue"
       fl-var-wgt         'bold
       comment-slant      'italic
-      sb_height_mag      0.77
+      sb_height_mag      0.8
+      mode_line_mag      0.8
       bgr                'dark
       notice             "IndianRed3"
       paren-mismatch     notice
@@ -271,9 +272,9 @@
  `(message-separator                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(minibuffer-prompt                     ((t (:inherit default))))
  `(mm-uu-extract                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box t :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :height 0.90))))
+ `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :height ,mode_line_mag))))
  `(mode-line-highlight                   ((((class color) (min-colors 88)) (:box nil :weight bold))))
- `(mode-line-inactive                    ((((class color) (min-colors 88)) (:height 0.90 :background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :weight normal))))
+ `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :weight normal :height ,mode_line_mag))))
  `(next-error                            ((t (:inherit error))))
  `(org-agenda-column-dateline            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(org-block                             ((t (:inherit default))))

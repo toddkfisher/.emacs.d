@@ -1,35 +1,36 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "grey56"
-      bgr                'dark
+(setq bg                 "gray63" ;"SlateGray3"; "LightSteelBlue3"
+      bgr                'light
       kw-wgt             'bold
       kw-slant           'italic
       fg                 "black"
       kw                 fg
       cursor             "yellow"
-      fl-string          "DarkSlateBlue"
+      fl-string          "DodgerBlue4"
       string-slant       'normal
-      fl-func-underline  t
+      fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
       fl-func-fg         fg
-      fl-comment         "grey35"
+      fl-comment         "grey30"
       comment-slant      'italic
       sb_height_mag      0.75
-      notice             "firebrick"
+      modeln_height_mag  sb_height_mag
+      notice             "tomato3"
       paren-mismatch     notice
-      rgn-bg             "gray75"
+      rgn-bg             "azure4"
       isrch-bg           notice
       isrch-fg           "white"
       lzy-hi             isrch-bg
       lzy-hi-wgt         'bold
-      lzy-hi-bgr         "#ac8c8c"
+      lzy-hi-bgr         "RosyBrown3"
       grp-0              "red4"
       grp-1              "red3"
       grp-2              "red2"
       modeln-bg          "sandy brown"
       modeln-fg          "grey15"
-      modeln-inactive-fg "gray75"
-      modeln-inactive-bg "#6E7077"
+      modeln-inactive-fg "gray35"
+      modeln-inactive-bg "gray59"
       hl-ln              modeln-inactive-bg
       err                "dark red"
       bm-fg              "white"
@@ -267,9 +268,9 @@
  `(message-separator                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(minibuffer-prompt                     ((t (:inherit default))))
  `(mm-uu-extract                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box t :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :box t))))
+ `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :box t :height ,modeln_height_mag))))
  `(mode-line-highlight                   ((((class color) (min-colors 88)) (:box nil :weight bold))))
- `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :box t :weight normal))))
+ `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :box t :weight normal :height ,modeln_height_mag))))
  `(next-error                            ((t (:inherit error))))
  `(org-agenda-column-dateline            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(org-block                             ((t (:inherit default))))
