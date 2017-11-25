@@ -15,6 +15,7 @@
 (require 'python) ;- so that python-mode-map exists for key redef
 (require 'scheme)
 (require 'kill-ring-ido)
+(require 'subr-x)
 (load "~/.emacs.d/lua-mode") ;- custom version
 
 (use-package bury-successful-compilation
