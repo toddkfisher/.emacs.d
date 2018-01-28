@@ -1,8 +1,8 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "#1d2021"
+(setq bg                 "#202020" ;"#111111" ; "#1d2021"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "#ccdcdc" ;"#eeeee3"
+      fg                 "grey93" ;"#ccdcdc" ;"#eeeee3"
       kw                 "LightSteelBlue4"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
@@ -15,8 +15,8 @@
       fl-var             "LightSteelBlue"
       fl-var-wgt         'bold
       comment-slant      'italic
-      sb_height_mag      0.8
-      mode_line_mag      0.8
+      ;;sb-height-mag      0.8
+      mode_line_mag      1.0
       bgr                'dark
       notice             "IndianRed3"
       paren-mismatch     notice
@@ -334,13 +334,13 @@
  `(show-paren-match                      ((((class color) (background ,bgr)) (:weight ,par-match-wgt :foreground ,par-match-fg))))
  `(show-paren-mismatch                   ((((class color)) (:foreground ,paren-mismatch))))
 
- `(speedbar-button-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb_height_mag :weight normal :width normal ))))
- `(speedbar-directory-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb_height_mag :weight normal :width normal ))))
- `(speedbar-file-face                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb_height_mag :weight normal :width normal ))))
+ `(speedbar-button-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
+ `(speedbar-directory-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
+ `(speedbar-file-face                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
  `(speedbar-highlight-face               ((t (:background ,lzy-hi-bg))))
- `(speedbar-selected-face                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb_height_mag :weight normal :width normal ))))
- `(speedbar-separator-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb_height_mag :weight normal :width normal ))))
- `(speedbar-tag-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb_height_mag :weight normal :width normal ))))
+ `(speedbar-selected-face                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
+ `(speedbar-separator-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
+ `(speedbar-tag-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
 
  `(tex-math                              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
  `(tex-verbatim                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant italic :weight normal :width normal ))))
