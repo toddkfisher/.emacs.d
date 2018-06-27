@@ -1,6 +1,6 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "gray63" ;"SlateGray3"; "LightSteelBlue3"
-      bgr                'light
+(setq bg                 "grey40" ; "LightSteelBlue3"
+      bgr                'dark
       kw-wgt             'bold
       kw-slant           'italic
       fg                 "black"
@@ -14,8 +14,6 @@
       fl-func-fg         fg
       fl-comment         "grey30"
       comment-slant      'italic
-      sb_height_mag      0.75
-      modeln_height_mag  sb_height_mag
       notice             "tomato3"
       paren-mismatch     notice
       rgn-bg             "azure4"

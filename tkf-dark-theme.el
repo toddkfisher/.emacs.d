@@ -1,9 +1,9 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "#202020" ;"#111111" ; "#1d2021"
+(setq bg                 "#1d2021"; "#3f403f" "#232323" "#202020" "#111111"
       kw-wgt             'bold
       kw-slant           'italic
       fg                 "grey93" ;"#ccdcdc" ;"#eeeee3"
-      kw                 "LightSteelBlue4"
+      kw                 "SteelBlue4" ;"LightSteelBlue4"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
       string-slant       'normal
@@ -12,11 +12,9 @@
       fl-func-slant      'normal
       fl-func-fg         "SkyBlue3"
       fl-comment         "grey60"
-      fl-var             "LightSteelBlue"
-      fl-var-wgt         'bold
+      fl-var             fl-func-fg
+      fl-var-wgt         'normal
       comment-slant      'italic
-      ;;sb-height-mag      0.8
-      mode_line_mag      1.0
       bgr                'dark
       notice             "IndianRed3"
       paren-mismatch     notice
@@ -29,12 +27,13 @@
       grp-1              "red3"
       grp-2              "red2"
       hl-ln              "gray25"
-      ;hl-ln-underline    t
+      ;;hl-ln-underline    t
       modeln-bg          "sandy brown"
       modeln-fg          "black"
       modeln-inactive-fg "gray37"
       modeln-inactive-bg "gray20"
       modeln-outline     "gray"
+      ;;modeln-
       err                "dark red"
       bm-fg              "white"
       bm-bg              isrch-bg
@@ -76,9 +75,6 @@
  `(error                                 ((t (:inherit default :stipple nil :background ,bg  :foreground ,err :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(comint-highlight-input                ((t (:inherit default))))
  `(comint-highlight-prompt               ((t (:inherit default :stipple nil :background ,bg :foreground ,pmpt-fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant ,pmpt-slant :weight ,pmpt-wgt :width normal ))))
- `(compilation-info                      ((t (:inherit default :foreground ,fg :box nil))))
- `(compilation-line-number               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline t :slant normal :weight normal :width normal ))))
- `(compilation-warning                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline t :slant normal :weight normal :width normal ))))
  `(cscope-file-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
  `(cscope-function-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant italic :width normal ))))
  `(cscope-line-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
@@ -250,10 +246,13 @@
  `(highlight-changes                     ((((min-colors 88) (class color)) (:inherit default :weight bold))))
  `(highlight-changes-delete              ((((min-colors 88) (class color)) (:inherit default :strike-through t))))
  `(hl-line                               ((t (:background ,hl-ln))))
+ `(ido-vertical-first-match-face         ((((min-colors 88) (class color)) (:inherit font-lock-variable-name-face :underline t))))
+ `(ido-vertical-match-face               ((((min-colors 88) (class color)) (:inherit font-lock-variable-name-face :underline nil))))
+ `(ido-vertical-only-match-face          ((((min-colors 88) (class color)) (:inherit font-lock-variable-name-face :underline t))))
  `(ido-indicator                         ((((min-colors 88) (class color)) (:inherit default))))
  `(ido-only-match                        ((((class color)) (:inherit default))))
  `(ido-subdir                            ((((min-colors 88) (class color)) (:inherit default :underline t))))
-  `(isearch                               ((((class color) (min-colors 88) (background ,bgr)) (:background ,isrch-bg :foreground ,isrch-fg))))
+ `(isearch                               ((((class color) (min-colors 88) (background ,bgr)) (:background ,isrch-bg :foreground ,isrch-fg))))
  `(isearch-fail                          ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
  `(lazy-highlight                        ((((class color) (min-colors 88) (background ,bgr)) (:underline nil :background ,lzy-hi-bg :overline nil :foreground ,lzy-hi))))
  `(link                                  ((t (:inherit default :underline t))))
@@ -272,9 +271,9 @@
  `(message-separator                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(minibuffer-prompt                     ((t (:inherit default))))
  `(mm-uu-extract                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box t :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :height ,mode_line_mag))))
+ `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :box t))))
  `(mode-line-highlight                   ((((class color) (min-colors 88)) (:box nil :weight bold))))
- `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :weight normal :height ,mode_line_mag))))
+ `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :box nil :weight normal))))
  `(next-error                            ((t (:inherit error))))
  `(org-agenda-column-dateline            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(org-block                             ((t (:inherit default))))
@@ -333,7 +332,6 @@
  `(secondary-selection                   ((((class color) (min-colors 88) (background ,bgr)) (:inherit region))))
  `(show-paren-match                      ((((class color) (background ,bgr)) (:weight ,par-match-wgt :foreground ,par-match-fg))))
  `(show-paren-mismatch                   ((((class color)) (:foreground ,paren-mismatch))))
-
  `(speedbar-button-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
  `(speedbar-directory-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
  `(speedbar-file-face                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
@@ -341,7 +339,6 @@
  `(speedbar-selected-face                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
  `(speedbar-separator-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
  `(speedbar-tag-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
-
  `(tex-math                              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
  `(tex-verbatim                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant italic :weight normal :width normal ))))
  ;`(trailing-whitespace                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
@@ -382,11 +379,20 @@
  `(font-latex-verbatim-face              ((t (:inherit font-lock-string-face))))
  `(font-latex-warning-face               ((t (:inherit font-lock-warning-face))))
  `(preview-face                          ((t (:inherit default :stipple nil :background ,auctex-preview-bg   :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal))))
- `(compilation-error                     ((t (:box nil))))
- `(compilation-column-number             ((t (:inherit compilation-warning))))
- `(compilation-mode-line-exit            ((t (:box nil))))
- `(compilation-mode-line-fail            ((t (:box nil))))
- `(compilation-mode-line-run             ((t (:box nil))))
+  `(compilation                           ((t (:inherit nil))))
+ `(compilation-enter-directory           ((t (:inherit nil))))
+ `(compilation-error                     ((t (:inherit nil))))
+ `(compilation-info                      ((t (:inherit nil))))
+ `(compilation-info                      ((t (:inherit nil))))
+ `(compilation-leave-directory           ((t (:inherit nil))))
+ `(compilation-line                      ((t (:inherit nil))))
+ `(compilation-line-number               ((t (:inherit nil))))
+ `(compilation-message                   ((t (:inherit nil))))
+ `(compilation-mode-line-exit            ((t (:inherit nil))))
+ `(compilation-mode-line-fail            ((t (:inherit nil))))
+ `(compilation-mode-line-run             ((t (:inherit nil))))
+ `(compilation-warning                   ((t (:inherit nil))))
+`(compilation-column                    ((t (:inherit nil))))
  `(hi-blue-b                             ((t (:inherit default :background ,hi-blu :weight bold))))
  `(hi-green                              ((t (:inherit default :background ,hi-grn))))
  `(hi-green-b                            ((t (:inherit default :background ,hi-grn :weight bold))))
@@ -556,8 +562,10 @@
  `(mc/cursor-face                        ((t (:interit cursor :foreground ,cursor))))
  `(mc/cursor-bar-face                    ((t (:interit cursor :foreground ,cursor))))
  `(racket-keyword-argument-face          ((t (:interit font-lock-keyword-face))))
- ;`(racket-paren-face                     ((t (:interit font-lock-keyword-face))))
- ;`(racket-selfeval-face                  ((t (:interit font-lock-keyword-face))))
+ ;;`(racket-paren-face                     ((t (:interit font-lock-keyword-face))))
+ ;;`(racket-selfeval-face                  ((t (:interit font-lock-keyword-face))))
+ '(geiser-font-lock-doc-link ((t (:inherit link))))
+ '(geiser-font-lock-xref-link ((t (:inherit link))))
 )
 
 (when load-file-name
