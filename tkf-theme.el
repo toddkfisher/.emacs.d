@@ -1,34 +1,34 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "grey40" ; "LightSteelBlue3"
+(setq bg                 "#696c72" ;"#5c6475"
       bgr                'dark
       kw-wgt             'bold
       kw-slant           'italic
       fg                 "black"
       kw                 fg
       cursor             "yellow"
-      fl-string          "DodgerBlue4"
+      fl-string          "MidnightBlue"
       string-slant       'normal
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
       fl-func-fg         fg
-      fl-comment         "grey30"
+      fl-comment         "grey23"
       comment-slant      'italic
-      notice             "tomato3"
+      notice             "DarkRed"
       paren-mismatch     notice
-      rgn-bg             "azure4"
+      rgn-bg             "LightSlateGray"
       isrch-bg           notice
-      isrch-fg           "white"
+      isrch-fg           "light gray"
       lzy-hi             isrch-bg
       lzy-hi-wgt         'bold
-      lzy-hi-bgr         "RosyBrown3"
-      grp-0              "red4"
-      grp-1              "red3"
-      grp-2              "red2"
-      modeln-bg          "sandy brown"
+      lzy-hi-bgr         "RosyBrown4"
+      grp-0              "tomato4"
+      grp-1              "tomato3"
+      grp-2              "tomato2"
+      modeln-bg          "#d89356"
       modeln-fg          "grey15"
-      modeln-inactive-fg "gray35"
-      modeln-inactive-bg "gray59"
+      modeln-inactive-fg "gray15"
+      modeln-inactive-bg "#72767c"
       hl-ln              modeln-inactive-bg
       err                "dark red"
       bm-fg              "white"
@@ -70,9 +70,6 @@
  `(error                                 ((t (:inherit default :stipple nil :background ,bg  :foreground ,err :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(comint-highlight-input                ((t (:inherit default))))
  `(comint-highlight-prompt               ((t (:inherit default :stipple nil :background ,bg :foreground ,pmpt-fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant ,pmpt-slant :weight ,pmpt-wgt :width normal ))))
- `(compilation-info                      ((t (:inherit default :foreground ,fg :box nil))))
- `(compilation-line-number               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline t :slant normal :weight normal :width normal ))))
- `(compilation-warning                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline t :slant normal :weight normal :width normal ))))
  `(cscope-file-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
  `(cscope-function-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant italic :width normal ))))
  `(cscope-line-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
@@ -374,12 +371,21 @@
  `(font-latex-superscript-face           ((t (:inherit normal))))
  `(font-latex-verbatim-face              ((t (:inherit font-lock-string-face))))
  `(font-latex-warning-face               ((t (:inherit font-lock-warning-face))))
+ `(compilation                           ((t (:inherit nil))))
+ `(compilation-enter-directory           ((t (:inherit nil))))
+ `(compilation-error                     ((t (:inherit nil))))
+ `(compilation-info                      ((t (:inherit nil))))
+ `(compilation-info                      ((t (:inherit nil))))
+ `(compilation-leave-directory           ((t (:inherit nil))))
+ `(compilation-line                      ((t (:inherit nil))))
+ `(compilation-line-number               ((t (:inherit nil))))
+ `(compilation-message                   ((t (:inherit nil))))
+ `(compilation-mode-line-exit            ((t (:inherit nil))))
+ `(compilation-mode-line-fail            ((t (:inherit nil))))
+ `(compilation-mode-line-run             ((t (:inherit nil))))
+ `(compilation-warning                   ((t (:inherit nil))))
+ `(compilation-column                    ((t (:inherit nil))))
  `(preview-face                          ((t (:inherit default :stipple nil :background ,auctex-preview-bg   :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal))))
- `(compilation-error                     ((t (:box nil))))
- `(compilation-column-number             ((t (:inherit compilation-warning))))
- `(compilation-mode-line-exit            ((t (:box t))))
- `(compilation-mode-line-fail            ((t (:box t))))
- `(compilation-mode-line-run             ((t (:box t))))
  `(hi-blue-b                             ((t (:inherit default :background ,hi-blu :weight bold))))
  `(hi-green                              ((t (:inherit default :background ,hi-grn))))
  `(hi-green-b                            ((t (:inherit default :background ,hi-grn :weight bold))))
