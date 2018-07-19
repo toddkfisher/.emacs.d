@@ -307,6 +307,7 @@
 ;;* Misc initialization
 
 (server-start)
+(window-numbering-mode t)
 ;; work around the bogus "-remote" flag specified by browse-url-firefox
 (setq browse-url-browser-function 'browse-url-generic)
 (setq-default indent-tabs-mode nil)
