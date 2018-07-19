@@ -1,10 +1,4 @@
-﻿;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
-(when (>= emacs-major-version 24)
+﻿(when (>= emacs-major-version 24)
   (require 'package)
   (setq package-archives '(("gnu"       . "http://elpa.gnu.org/packages/")
                            ;("marmalade" . "http://marmalade-repo.org/packages/")
@@ -813,7 +807,6 @@ Version 2015-04-09"
     (find-file (concat org-directory "/" f))))
 
 ;;* Custom keybindings.
-
 (global-set-key (kbd "C-x k")           'kill-this-buffer)
 (global-set-key (kbd "M-`")             'switch-to-next-interesting-buffer)
 (global-set-key (kbd "C-`")             'switch-to-next-file-buffer)
@@ -858,8 +851,8 @@ Version 2015-04-09"
 (global-set-key (kbd "C-z")             'undo)
 (global-set-key (kbd "C-a")             'tkf-beginning-of-line)
 (global-set-key (kbd "C-=")             'er/expand-region)
-(global-set-key (kbd "<C-right>")       'tkf-forward-blank)
-(global-set-key (kbd "<C-left>")        'tkf-back-blank)
+(global-set-key (kbd "<M-right>")       'other-window)
+(global-set-key (kbd "<M-left>")        'prev-window)
 (global-set-key (kbd "C-M-<return>")    'hs-toggle-hiding)
 (global-set-key (kbd "M-f")             'forward-to-word)
 (global-set-key (kbd "M-b")             'backward-to-word)
