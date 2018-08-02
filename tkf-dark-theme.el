@@ -51,7 +51,7 @@
       pmpt-fg            fl-string
       pmpt-slant         'normal
       pmpt-wgt           'bold
-      ediff-bg           "AntiqueWhite3"
+      ediff-bg           "gray20"
       wrn                "yellow2"
       crs-fg             fg
       crs-bg             "white"
