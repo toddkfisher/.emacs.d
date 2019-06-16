@@ -1,8 +1,8 @@
 ;;------------------------------------------------------------------------------
-(setq bg                 "#1d2021"; "#3f403f" "#232323" "#202020" "#111111"
+(setq bg                 "grey3"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "grey93" ;"#ccdcdc" ;"#eeeee3"
+      fg                 "grey87" ;"#ccdcdc" ;"#eeeee3"
       kw                 "SteelBlue4" ;"LightSteelBlue4"
       cursor             "yellow"
       fl-string          "DarkSeaGreen3"
@@ -18,7 +18,7 @@
       bgr                'dark
       notice             "IndianRed3"
       paren-mismatch     notice
-      rgn-bg             "SteelBlue4"
+      rgn-bg             "DarkBlue"
       isrch-bg           notice
       isrch-fg           "white"
       lzy-hi             isrch-bg
@@ -30,9 +30,17 @@
       ;;hl-ln-underline    t
       modeln-bg          "sandy brown"
       modeln-fg          "black"
-      modeln-inactive-fg "gray37"
+      modeln-inactive-fg "light slate gray"
       modeln-inactive-bg "gray20"
       modeln-outline     "gray"
+      org1               kw
+      org2               "SteelBlue3"
+      org3               "SteelBlue2"
+      org4               "SteelBlue1"
+      org5               org4
+      org6               org4
+      org7               org4
+      org8               org4
       ;;modeln-
       err                "dark red"
       bm-fg              "white"
@@ -297,14 +305,14 @@
  `(org-headline-done                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(org-hide                              ((t (:inherit default :stipple nil :background ,bg :foreground ,bg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(org-latex-and-export-specials         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-level-1                           ((t (:inherit default :stipple nil :background ,bg :foreground ,kw :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-2                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-3                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-4                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-5                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-6                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-7                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-8                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-level-1                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org1 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-level-2                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org2 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-level-3                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org3 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-level-4                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org4 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-level-5                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org5 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-level-6                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org6 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-level-7                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org7 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-level-8                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org8 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
  `(org-link                              ((t (:inherit link))))
  `(org-property-value                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))) t)
  `(org-scheduled                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
@@ -332,26 +340,26 @@
  `(secondary-selection                   ((((class color) (min-colors 88) (background ,bgr)) (:inherit region))))
  `(show-paren-match                      ((((class color) (background ,bgr)) (:weight ,par-match-wgt :foreground ,par-match-fg))))
  `(show-paren-mismatch                   ((((class color)) (:foreground ,paren-mismatch))))
- `(speedbar-button-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
- `(speedbar-directory-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
- `(speedbar-file-face                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
- `(speedbar-highlight-face               ((t (:background ,lzy-hi-bg))))
- `(speedbar-selected-face                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
- `(speedbar-separator-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
- `(speedbar-tag-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :height ,sb-height-mag :weight normal :width normal ))))
+ `(speedbar-button-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
+ `(speedbar-directory-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
+ `(speedbar-file-face                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
+ `(speedbar-selected-face                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
+ `(speedbar-separator-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
+ `(speedbar-tag-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
+ `(speedbar-highlight-face               ((t (:inherit lazy-highlight))))
  `(tex-math                              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
  `(tex-verbatim                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant italic :weight normal :width normal ))))
  ;`(trailing-whitespace                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-brace-face                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-command-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-current-workgroup-face             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-divider-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-filename-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-frapme-face                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-message-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-mode-line-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-other-workgroup-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
- `(wg-previous-workgroup-face            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal ))))
+ `(wg-brace-face                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-command-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-current-workgroup-face             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-divider-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-filename-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-frapme-face                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-message-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-mode-line-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-other-workgroup-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(wg-previous-workgroup-face            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
  `(widget-button-pressed                 ((((min-colors 88) (class color)) (:inherit widget-button))))
  `(widget-documentation                  ((((class color) (background ,bgr)) (:inherit default))))
  `(bm-face                               ((((class color) (background ,bgr)))))
@@ -539,7 +547,7 @@
  `(magit-signature-revoked               ((t (:inherit default ))))
  `(magit-signature-untrusted             ((t (:inherit default ))))
  `(magit-tag                             ((t (:inherit default ))))
- `(slime-error-face                      ((t (:inherit default :foreground ,err))))
+ `(slime-error-face                      ((t (:inherit default))))
  `(slime-highlight-face                  ((t (:inherit default :inverse t))))
  `(slime-inspector-action-face           ((t (:inherit default))))
  `(slime-inspector-label-face            ((t (:inherit default))))
