@@ -1,8 +1,8 @@
 ;;(setq modeln_height_mag 1.0
 ;;      sb_height_mag 1.0)
 ;;------------------------------------------------------------------------------
-(setq bg                 "Gray50" ;#6e7b8b" "#5c6475"
-      bgr                'light
+(setq bg                 "Gray30"
+      bgr                'dark
       kw-wgt             'bold
       kw-slant           'italic
       fg                 "black"

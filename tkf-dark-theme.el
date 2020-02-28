@@ -2,17 +2,17 @@
 (setq bg                 "grey3"
       kw-wgt             'bold
       kw-slant           'italic
-      fg                 "grey87" ;"#ccdcdc" ;"#eeeee3"
+      fg                 "azure1" ;"grey87" ;"#ccdcdc" ;"#eeeee3"
       kw                 "SteelBlue4" ;"LightSteelBlue4"
       cursor             "yellow"
-      fl-string          "DarkSeaGreen3"
+      fl-string          "MediumSeaGreen"
       string-slant       'normal
       fl-func-underline  nil
       fl-func-wgt        'bold
       fl-func-slant      'normal
       fl-func-fg         "SkyBlue3"
       fl-comment         "grey60"
-      fl-var             fl-func-fg
+      fl-var             "SkyBlue3"
       fl-var-wgt         'normal
       comment-slant      'italic
       bgr                'dark
@@ -26,7 +26,7 @@
       grp-0              "red4"
       grp-1              "red3"
       grp-2              "red2"
-      hl-ln              "gray25"
+      hl-ln              "gray12"
       ;;hl-ln-underline    t
       modeln-bg          "sandy brown"
       modeln-fg          "black"
@@ -42,7 +42,7 @@
       org7               org4
       org8               org4
       ;;modeln-
-      err                "dark red"
+      err                "red"
       bm-fg              "white"
       bm-bg              isrch-bg
       par-match-fg       "purple"
@@ -78,39 +78,58 @@
 
 (custom-theme-set-faces
  'tkf-dark
-
- `(default                               ((t (:inherit nil :background ,bg :foreground ,fg))))
- `(error                                 ((t (:inherit default :stipple nil :background ,bg  :foreground ,err :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(default                               ((t (:inherit nil
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(error                                 ((t (:foreground ,err))))
  `(comint-highlight-input                ((t (:inherit default))))
- `(comint-highlight-prompt               ((t (:inherit default :stipple nil :background ,bg :foreground ,pmpt-fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant ,pmpt-slant :weight ,pmpt-wgt :width normal ))))
- `(cscope-file-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(cscope-function-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant italic :width normal ))))
- `(cscope-line-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(cscope-line-number-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(cscope-mouse-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(comint-highlight-prompt               ((t (:inherit default
+                                                       :foreground ,pmpt-fg
+                                                       :slant ,pmpt-slant
+                                                       :weight ,pmpt-wgt))))
+ `(cscope-file-face                      ((t (:inherit default
+                                                       :weight bold))))
+ `(cscope-function-face                  ((t (:inherit default
+                                                       :slant italic))))
+ `(cscope-line-face                      ((t (:inherit default))))
+ `(cscope-line-number-face               ((t (:inherit default))))
+ `(cscope-mouse-face                     ((t (:inherit default))))
  `(cua-global-mark                       ((t (:inherit region))))
- `(cua-rectangle                         ((default nil) (((class color)) (:inherit region))))
- `(cua-rectangle-noselect                ((default nil) (((class color)) (:inherit default))))
- `(cursor                               ((t (:background ,cursor :foreground ,fg))))
- `(custom-button-pressed-unraised        ((default (:inherit custom-button-unraised)) (((class color) (background ,bgr)) nil)))
- `(custom-changed                        ((((min-colors 88) (class color)) (:inherit custom-button-unraised))))
- `(custom-comment                        ((((class grayscale color) (background ,bgr)) (:inherit default))))
+ `(cua-rectangle                         ((t (:inherit region))))
+ `(cua-rectangle-noselect                ((t (:inherit default))))
+ `(cursor                                ((t (:inherit default
+                                                       :background ,cursor
+                                                       :foreground ,fg))))
+ `(custom-button-pressed-unraised        ((t (:inherit custom-button-unraised
+                                                       :background ,bg))))
+ `(custom-changed                        ((t (:inherit custom-button-unraised))))
+ `(custom-comment                        ((t (:inherit default))))
  `(custom-comment-tag                    ((t (:inherit default))))
  `(custom-face-tag                       ((t (:inherit default))))
- `(custom-group-tag                      ((((min-colors 88) (class color) (background ,bgr)) (:inherit default :weight bold))))
- `(custom-group-tag-1                    ((((min-colors 88) (class color) (background ,bgr)) (:inherit default :weight bold))))
- `(custom-invalid                        ((((class color)) (:inherit default :strike-through t))))
- `(custom-modified                       ((((min-colors 88) (class color)) (:inherit default))))
- `(custom-rogue                          ((((class color)) (:inherit default))))
+ `(custom-group-tag                      ((t (:inherit default
+                                                       :weight bold))))
+ `(custom-group-tag-1                    ((t (:inherit default
+                                                       :weight bold))))
+ `(custom-invalid                        ((t (:inherit default
+                                                       :strike-through t))))
+ `(custom-modified                       ((t (:inherit default))))
+ `(custom-rogue                          ((t (:inherit default))))
  `(custom-saved                          ((t (:inherit default))))
- `(custom-set                            ((((min-colors 88) (class color)) (:inherit default))))
- `(custom-state                          ((((class color) (background ,bgr)) (:inherit default))))
- `(custom-themed                         ((((min-colors 88) (class color)) (:inherit default))))
- `(custom-variable-button                ((t (:inherit link :weight normal))))
- `(custom-variable-tag                   ((((min-colors 88) (class color) (background ,bgr)) (:inherit custom-variable-button :weight normal))))
+ `(custom-set                            ((t (:inherit default))))
+ `(custom-state                          ((t (:inherit default))))
+ `(custom-themed                         ((t (:inherit default))))
+ `(custom-variable-button                ((t (:inherit link
+                                                       :weight normal))))
+ `(custom-variable-tag                   ((t (:inherit custom-variable-button
+                                                       :weight normal))))
  `(custom-visibility                     ((t (:inherit link))))
- `(warning                               ((((class color) (background ,bgr)) (:inherit default :stipple nil :background ,bg :foreground ,wrn :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight ,kw-wgt :width normal ))))
- `(makefile-space                        ((((class color) (background ,bgr)) (:inherit default :stipple nil :background ,wrn :foreground ,wrn :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight ,kw-wgt :width normal ))))
+ `(warning                               ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,wrn
+                                                       :weight ,kw-wgt))))
+ `(makefile-space                        ((t (:inherit default
+                                                       :background ,wrn
+                                                       :foreground ,wrn))))
  `(term-color-black                      ((t (:inherit default))))
  `(term-color-blue                       ((t (:inherit default))))
  `(term-color-cyan                       ((t (:inherit default))))
@@ -119,7 +138,8 @@
  `(term-color-red                        ((t (:inherit default))))
  `(term-color-white                      ((t (:inherit default))))
  `(term-color-yellow                     ((t (:inherit default))))
- `(dired-symlink                         ((t (:inherit link :slant italic))))
+ `(dired-symlink                         ((t (:inherit
+                                              link :slant italic))))
  `(dired-directory                       ((t (:inherit link))))
  `(dired-marked                          ((t (:inherit warning))))
  `(diredp-compressed-file-suffix         ((t (:inherit default))))
@@ -142,192 +162,238 @@
  `(diredp-other-priv                     ((t (:inherit default))))
  `(diredp-rare-priv                      ((t (:inherit default))))
  `(diredp-read-priv                      ((t (:inherit default))))
- `(diredp-symlink                        ((t (:inherit link :slant italic))))
+ `(diredp-symlink                        ((t (:inherit link
+                                                       :slant italic))))
  `(diredp-write-priv                     ((t (:inherit default))))
  `(dired-perm-write                      ((t (:inherit default))))
- `(escape-glyph                          ((t (:inherit default :inverse-video t))))
- `(eshell-ls-archive                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(eshell-ls-backup                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(eshell-ls-clutter                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(escape-glyph                          ((t (:inherit default
+                                                       :inverse-video t))))
+ `(eshell-ls-archive                     ((t (:inherit default))))
+ `(eshell-ls-backup                      ((t (:inherit default))))
+ `(eshell-ls-clutter                     ((t (:inherit default))))
  `(eshell-ls-directory                   ((t (:inherit link))))
  `(eshell-ls-executable                  ((t (:inherit warning))))
- `(eshell-ls-missing                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(eshell-ls-product                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(eshell-ls-readonly                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(eshell-ls-special                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(eshell-ls-symlink                     ((t (:inherit link :slant ,symlink-slant :weight ,symlink-weight))))
- `(eshell-ls-unreadable                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant italic :weight normal :width normal ))))
+ `(eshell-ls-missing                     ((t (:inherit default))))
+ `(eshell-ls-product                     ((t (:inherit default))))
+ `(eshell-ls-readonly                    ((t (:inherit default))))
+ `(eshell-ls-special                     ((t (:inherit default))))
+ `(eshell-ls-symlink                     ((t (:inherit link
+                                                       :slant ,symlink-slant
+                                                       :weight ,symlink-weight))))
+ `(eshell-ls-unreadable                  ((t (:inherit default))))
  `(eshell-prompt                         ((t (:inherit comint-highlight-prompt))))
  `(file-name-shadow                      ((t (:inherit default))))
  `(fixed-pitch                           ((t (:inherit default))))
  `(shadow                                ((t (:inherit font-lock-comment-face))))
- `(font-lock-builtin-face                ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
- `(font-lock-comment-delimiter-face      ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :slant ,comment-slant :foreground ,fl-comment))))
- `(font-lock-comment-face                ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :slant ,comment-slant :foreground ,fl-comment))))
- `(font-lock-constant-face               ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
-  `(font-lock-function-name-face          ((t (:inherit default :foreground ,fl-func-fg :slant ,fl-func-slant :weight ,fl-func-wgt :underline ,fl-func-underline))))
- `(font-lock-keyword-face                ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :foreground ,kw :slant ,kw-slant :weight ,kw-wgt))))
+ `(font-lock-builtin-face                ((t (:inherit default))))
+ `(font-lock-comment-delimiter-face      ((t (:inherit default
+                                                       :slant ,comment-slant
+                                                       :foreground ,fl-comment))))
+ `(font-lock-comment-face                ((t (:inherit default
+                                                       :slant ,comment-slant
+                                                       :foreground ,fl-comment))))
+ `(font-lock-constant-face               ((t (:inherit default))))
+ `(font-lock-function-name-face          ((t (:inherit default
+                                                       :foreground ,fl-func-fg
+                                                       :slant ,fl-func-slant
+                                                       :weight ,fl-func-wgt
+                                                       :underline ,fl-func-underline))))
+ `(font-lock-keyword-face                ((t (:inherit default
+                                                       :foreground ,kw
+                                                       :slant ,kw-slant
+                                                       :weight ,kw-wgt))))
  `(font-lock-negation-char-face          ((t (:inherit default))))
  `(font-lock-regexp-grouping-backslash   ((t (:inherit default))))
  `(font-lock-regexp-grouping-construct   ((t (:inherit default))))
- `(font-lock-string-face                 ((((class color) (min-colors 88) (background ,bgr)) (:slant ,string-slant :foreground ,fl-string))))
- `(font-lock-type-face                   ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
- `(font-lock-variable-name-face          ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :foreground ,fl-var :weight ,fl-var-wgt))))
- `(font-lock-warning-face                ((((class color) (min-colors 88) (background ,bgr)) (:inherit error))))
- `(fringe                                ((((class color) (min-colors 88) (background ,bgr)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg))))
- `(gnus-button                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-1                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-10                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-11                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-2                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-3                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-4                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-5                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-6                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-7                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-8                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-9                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-cite-attribution                 ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-bold                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-bold-italic             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-highlight-words         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-italic                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-strikethru              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-underline               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-underline-bold          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-underline-bold-italic   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-emphasis-underline-italic        ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-mail-1                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-mail-1-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-mail-2                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-mail-2-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-mail-3                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-mail-3-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-mail-low                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-mail-low-empty             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-1                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-1-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-2                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-2-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-3                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-3-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-4                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-4-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-5                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-5-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-6                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-6-empty               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-low                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-group-news-low-empty             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-header-content                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-header-from                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-header-name                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-header-newsgroups                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-header-subject                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-server-agent                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-server-closed                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-server-denied                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-server-offline                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-server-opened                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-signature                        ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-splash                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-cancelled                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-high-ancient             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-high-read                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-high-ticked              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-high-undownloaded        ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-high-unread              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-low-ancient              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-low-read                 ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-low-ticked               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-low-undownloaded         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-low-unread               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-normal-ancient           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-normal-read              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-normal-ticked            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-normal-undownloaded      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-normal-unread            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(gnus-summary-selected                 ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(header-line                           ((default (:inherit default)) (((class color grayscale) (background ,bgr)) nil)))
- `(help-argument-name                    ((((supports :slant italic)) (:inherit default))))
- `(highlight                             ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :inverse-video t))))
- `(highlight-changes                     ((((min-colors 88) (class color)) (:inherit default :weight bold))))
- `(highlight-changes-delete              ((((min-colors 88) (class color)) (:inherit default :strike-through t))))
+ `(font-lock-string-face                 ((t (:inherit default
+                                                       :slant ,string-slant
+                                                       :foreground ,fl-string))))
+ `(font-lock-type-face                   ((t (:inherit default))))
+ `(font-lock-variable-name-face          ((t (:foreground ,fl-var
+                                              :weight ,fl-var-wgt))))
+ `(font-lock-warning-face                ((t (:inherit error))))
+ `(fringe                                ((t (:background ,modeln-inactive-bg
+                                                          :foreground ,modeln-inactive-fg))))
+ `(gnus-button                           ((t (:inherit default))))
+ `(gnus-cite-1                           ((t (:inherit default))))
+ `(gnus-cite-10                          ((t (:inherit default))))
+ `(gnus-cite-11                          ((t (:inherit default))))
+ `(gnus-cite-2                           ((t (:inherit default))))
+ `(gnus-cite-3                           ((t (:inherit default))))
+ `(gnus-cite-4                           ((t (:inherit default))))
+ `(gnus-cite-5                           ((t (:inherit default))))
+ `(gnus-cite-6                           ((t (:inherit default))))
+ `(gnus-cite-7                           ((t (:inherit default))))
+ `(gnus-cite-8                           ((t (:inherit default))))
+ `(gnus-cite-9                           ((t (:inherit default))))
+ `(gnus-cite-attribution                 ((t (:inherit default))))
+ `(gnus-emphasis-bold                    ((t (:inherit default))))
+ `(gnus-emphasis-bold-italic             ((t (:inherit default))))
+ `(gnus-emphasis-highlight-words         ((t (:inherit default))))
+ `(gnus-emphasis-italic                  ((t (:inherit default))))
+ `(gnus-emphasis-strikethru              ((t (:inherit default))))
+ `(gnus-emphasis-underline               ((t (:inherit default))))
+ `(gnus-emphasis-underline-bold          ((t (:inherit default))))
+ `(gnus-emphasis-underline-bold-italic   ((t (:inherit default))))
+ `(gnus-emphasis-underline-italic        ((t (:inherit default))))
+ `(gnus-group-mail-1                     ((t (:inherit default))))
+ `(gnus-group-mail-1-empty               ((t (:inherit default))))
+ `(gnus-group-mail-2                     ((t (:inherit default))))
+ `(gnus-group-mail-2-empty               ((t (:inherit default))))
+ `(gnus-group-mail-3                     ((t (:inherit default))))
+ `(gnus-group-mail-3-empty               ((t (:inherit default))))
+ `(gnus-group-mail-low                   ((t (:inherit default))))
+ `(gnus-group-mail-low-empty             ((t (:inherit default))))
+ `(gnus-group-news-1                     ((t (:inherit default))))
+ `(gnus-group-news-1-empty               ((t (:inherit default))))
+ `(gnus-group-news-2                     ((t (:inherit default))))
+ `(gnus-group-news-2-empty               ((t (:inherit default))))
+ `(gnus-group-news-3                     ((t (:inherit default))))
+ `(gnus-group-news-3-empty               ((t (:inherit default))))
+ `(gnus-group-news-4                     ((t (:inherit default))))
+ `(gnus-group-news-4-empty               ((t (:inherit default))))
+ `(gnus-group-news-5                     ((t (:inherit default))))
+ `(gnus-group-news-5-empty               ((t (:inherit default))))
+ `(gnus-group-news-6                     ((t (:inherit default))))
+ `(gnus-group-news-6-empty               ((t (:inherit default))))
+ `(gnus-group-news-low                   ((t (:inherit default))))
+ `(gnus-group-news-low-empty             ((t (:inherit default))))
+ `(gnus-header-content                   ((t (:inherit default))))
+ `(gnus-header-from                      ((t (:inherit default))))
+ `(gnus-header-name                      ((t (:inherit default))))
+ `(gnus-header-newsgroups                ((t (:inherit default))))
+ `(gnus-header-subject                   ((t (:inherit default))))
+ `(gnus-server-agent                     ((t (:inherit default))))
+ `(gnus-server-closed                    ((t (:inherit default))))
+ `(gnus-server-denied                    ((t (:inherit default))))
+ `(gnus-server-offline                   ((t (:inherit default))))
+ `(gnus-server-opened                    ((t (:inherit default))))
+ `(gnus-signature                        ((t (:inherit default))))
+ `(gnus-splash                           ((t (:inherit default))))
+ `(gnus-summary-cancelled                ((t (:inherit default))))
+ `(gnus-summary-high-ancient             ((t (:inherit default))))
+ `(gnus-summary-high-read                ((t (:inherit default))))
+ `(gnus-summary-high-ticked              ((t (:inherit default))))
+ `(gnus-summary-high-undownloaded        ((t (:inherit default))))
+ `(gnus-summary-high-unread              ((t (:inherit default))))
+ `(gnus-summary-low-ancient              ((t (:inherit default))))
+ `(gnus-summary-low-read                 ((t (:inherit default))))
+ `(gnus-summary-low-ticked               ((t (:inherit default))))
+ `(gnus-summary-low-undownloaded         ((t (:inherit default))))
+ `(gnus-summary-low-unread               ((t (:inherit default))))
+ `(gnus-summary-normal-ancient           ((t (:inherit default))))
+ `(gnus-summary-normal-read              ((t (:inherit default))))
+ `(gnus-summary-normal-ticked            ((t (:inherit default))))
+ `(gnus-summary-normal-undownloaded      ((t (:inherit default))))
+ `(gnus-summary-normal-unread            ((t (:inherit default))))
+ `(gnus-summary-selected                 ((t (:inherit default))))
+ `(header-line                           ((t (:inherit default))))
+ `(help-argument-name                    ((t (:inherit default
+                                                       :slant italic))))
+ `(highlight                             ((t (:inherit default
+                                                       :inverse-video t))))
+ `(highlight-changes                     ((t (:inherit default
+                                                       :weight bold))))
+ `(highlight-changes-delete              ((t (:inherit default
+                                                       :strike-through t))))
  `(hl-line                               ((t (:background ,hl-ln))))
- `(ido-vertical-first-match-face         ((((min-colors 88) (class color)) (:inherit font-lock-variable-name-face :underline t))))
- `(ido-vertical-match-face               ((((min-colors 88) (class color)) (:inherit font-lock-variable-name-face :underline nil))))
- `(ido-vertical-only-match-face          ((((min-colors 88) (class color)) (:inherit font-lock-variable-name-face :underline t))))
- `(ido-indicator                         ((((min-colors 88) (class color)) (:inherit default))))
- `(ido-only-match                        ((((class color)) (:inherit default))))
- `(ido-subdir                            ((((min-colors 88) (class color)) (:inherit default :underline t))))
- `(isearch                               ((((class color) (min-colors 88) (background ,bgr)) (:background ,isrch-bg :foreground ,isrch-fg))))
- `(isearch-fail                          ((((class color) (min-colors 88) (background ,bgr)) (:inherit default))))
- `(lazy-highlight                        ((((class color) (min-colors 88) (background ,bgr)) (:underline nil :background ,lzy-hi-bg :overline nil :foreground ,lzy-hi))))
- `(link                                  ((t (:inherit default :underline t))))
- `(link-visited                          ((default (:inherit link)) (((class color) (background ,bgr)) nil)))
- `(linum                                 ((t (:inherit default :foreground ,lnum-fg :background ,lnum-bg))))
- `(match                                 ((((class color) (min-colors 88) (background ,bgr)) (:inherit default :background ,lzy-hi))))
- `(message-cited-text                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-header-cc                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-header-name                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-header-newsgroups             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-header-other                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-header-subject                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-header-to                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-header-xheader                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-mml                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(message-separator                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(ido-vertical-first-match-face         ((t (:inherit font-lock-variable-name-face
+                                                       :underline t))))
+ `(ido-vertical-match-face               ((t (:inherit font-lock-variable-name-face
+                                                       :underline nil))))
+ `(ido-vertical-only-match-face          ((t (:inherit font-lock-variable-name-face
+                                                       :underline t))))
+ `(ido-indicator                         ((t (:inherit default))))
+ `(ido-only-match                        ((t (:inherit default))))
+ `(ido-subdir                            ((t (:inherit default
+                                                       :underline t))))
+ `(isearch                               ((t (:background ,isrch-bg
+                                                          :foreground ,isrch-fg))))
+ `(isearch-fail                          ((t (:inherit default))))
+ `(lazy-highlight                        ((t (:underline nil
+                                                         :background ,lzy-hi-bg
+                                                         :overline nil
+                                                         :foreground ,lzy-hi))))
+ `(link                                  ((t (:inherit default
+                                                       :underline t))))
+ `(link-visited                          ((t (:inherit link))))
+ `(linum                                 ((t (:inherit default
+                                                       :foreground ,lnum-fg
+                                                       :background ,lnum-bg))))
+ `(match                                 ((t (:inherit default
+                                                       :background ,lzy-hi))))
+ `(message-cited-text                    ((t (:inherit default))))
+ `(message-header-cc                     ((t (:inherit default))))
+ `(message-header-name                   ((t (:inherit default))))
+ `(message-header-newsgroups             ((t (:inherit default))))
+ `(message-header-other                  ((t (:inherit default))))
+ `(message-header-subject                ((t (:inherit default))))
+ `(message-header-to                     ((t (:inherit default))))
+ `(message-header-xheader                ((t (:inherit default))))
+ `(message-mml                           ((t (:inherit default))))
+ `(message-separator                     ((t (:inherit default))))
  `(minibuffer-prompt                     ((t (:inherit default))))
- `(mm-uu-extract                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box t :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(mode-line                             ((t (:background ,modeln-bg :foreground ,modeln-fg :box t))))
- `(mode-line-highlight                   ((((class color) (min-colors 88)) (:box nil :weight bold))))
- `(mode-line-inactive                    ((((class color) (min-colors 88)) (:background ,modeln-inactive-bg :foreground ,modeln-inactive-fg :box nil :weight normal))))
+ `(mm-uu-extract                         ((t (:inherit default))))
+ `(mode-line                             ((t (:background ,modeln-bg
+                                                          :foreground ,modeln-fg
+                                                          :box nil))))
+ `(mode-line-highlight                   ((t (:weight bold))))
+ `(mode-line-inactive                    ((t (:background ,modeln-inactive-bg
+                                                          :foreground ,modeln-inactive-fg))))
  `(next-error                            ((t (:inherit error))))
- `(org-agenda-column-dateline            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(org-agenda-column-dateline            ((t (:inherit default))))
  `(org-block                             ((t (:inherit default))))
  `(org-block-background                  ((t (:inherit org-level-1))))
- `(org-agenda-date                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))) t)
- `(org-agenda-date-weekend               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))) t)
- `(org-agenda-dimmed-todo-face           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-agenda-restriction-lock           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-agenda-structure                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-archived                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-clock-overlay                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-code                              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-column                            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-column-title                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-date                              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-done                              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-drawer                            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-ellipsis                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-footnote                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-formula                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-headline-done                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-hide                              ((t (:inherit default :stipple nil :background ,bg :foreground ,bg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-latex-and-export-specials         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-level-1                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org1 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-2                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org2 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-3                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org3 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-4                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org4 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-5                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org5 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-6                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org6 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-7                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org7 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(org-level-8                           ((t (:inherit default :stipple nil :background ,bg :foreground ,org8 :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
+ `(org-agenda-date                       ((t (:inherit default))))
+ `(org-agenda-date-weekend               ((t (:inherit default))))
+ `(org-agenda-dimmed-todo-face           ((t (:inherit default))))
+ `(org-agenda-restriction-lock           ((t (:inherit default))))
+ `(org-agenda-structure                  ((t (:inherit default))))
+ `(org-archived                          ((t (:inherit default))))
+ `(org-clock-overlay                     ((t (:inherit default))))
+ `(org-code                              ((t (:inherit default))))
+ `(org-column                            ((t (:inherit default))))
+ `(org-column-title                      ((t (:inherit default))))
+ `(org-date                              ((t (:inherit default))))
+ `(org-done                              ((t (:inherit default))))
+ `(org-drawer                            ((t (:inherit default))))
+ `(org-ellipsis                          ((t (:inherit default))))
+ `(org-footnote                          ((t (:inherit default))))
+ `(org-formula                           ((t (:inherit default))))
+ `(org-headline-done                     ((t (:inherit default))))
+ `(org-hide                              ((t (:inherit default))))
+ `(org-latex-and-export-specials         ((t (:inherit default))))
+ `(org-level-1                           ((t (:inherit default
+                                                       :foreground ,org1))))
+ `(org-level-2                           ((t (:inherit default
+                                                       :foreground ,org2))))
+ `(org-level-3                           ((t (:inherit default
+                                                       :foreground ,org3))))
+ `(org-level-4                           ((t (:inherit default
+                                                       :foreground ,org4))))
+ `(org-level-5                           ((t (:inherit default
+                                                       :foreground ,org5))))
+ `(org-level-6                           ((t (:inherit default
+                                                       :foreground ,org6))))
+ `(org-level-7                           ((t (:inherit default
+                                                       :foreground ,org7))))
+ `(org-level-8                           ((t (:inherit default
+                                                       :foreground ,org8))))
  `(org-link                              ((t (:inherit link))))
- `(org-property-value                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))) t)
- `(org-scheduled                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-scheduled-previously              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-scheduled-today                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-sexp-date                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-special-keyword                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-table                             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-tag                               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-target                            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-time-grid                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-todo                              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :weight bold :width normal ))))
- `(org-upcoming-deadline                 ((t (:inherit default :stipple nil   :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-verbatim                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(org-warning                           ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
+ `(org-property-value                    ((t (:inherit default))))
+ `(org-scheduled                         ((t (:inherit default))))
+ `(org-scheduled-previously              ((t (:inherit default))))
+ `(org-scheduled-today                   ((t (:inherit default))))
+ `(org-sexp-date                         ((t (:inherit default))))
+ `(org-special-keyword                   ((t (:inherit default))))
+ `(org-table                             ((t (:inherit default))))
+ `(org-tag                               ((t (:inherit default))))
+ `(org-target                            ((t (:inherit default))))
+ `(org-time-grid                         ((t (:inherit default))))
+ `(org-todo                              ((t (:inherit default))))
+ `(org-upcoming-deadline                 ((t (:inherit default))))
+ `(org-verbatim                          ((t (:inherit default))))
+ `(org-warning                           ((t (:inherit default))))
  `(outline-1                             ((t (:inherit default))))
  `(outline-2                             ((t (:inherit default))))
  `(outline-3                             ((t (:inherit default))))
@@ -336,36 +402,51 @@
  `(outline-6                             ((t (:inherit default))))
  `(outline-7                             ((t (:inherit default))))
  `(outline-8                             ((t (:inherit default))))
- `(region                                ((((class color) (min-colors 88) (background ,bgr)) (:background ,rgn-bg))))
- `(secondary-selection                   ((((class color) (min-colors 88) (background ,bgr)) (:inherit region))))
- `(show-paren-match                      ((((class color) (background ,bgr)) (:weight ,par-match-wgt :foreground ,par-match-fg))))
- `(show-paren-mismatch                   ((((class color)) (:foreground ,paren-mismatch))))
- `(speedbar-button-face                  ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
- `(speedbar-directory-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
- `(speedbar-file-face                    ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
- `(speedbar-selected-face                ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
- `(speedbar-separator-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
- `(speedbar-tag-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,sb-height :width normal :family ,sb-face))))
+ `(region                                ((t (:background ,rgn-bg))))
+ `(secondary-selection                   ((t (:inherit region))))
+ `(show-paren-match                      ((t (:weight ,par-match-wgt
+                                                      :foreground ,par-match-fg))))
+ `(show-paren-mismatch                   ((t (:foreground ,paren-mismatch))))
+ `(speedbar-button-face                  ((t (:inherit default
+                                                       :height ,sb-height
+                                                       :family ,sb-face))))
+ `(speedbar-directory-face               ((t (:inherit default
+                                                       :height ,sb-height
+                                                       :family ,sb-face))))
+ `(speedbar-file-face                    ((t (:inherit default
+                                                       :height ,sb-height
+                                                       :family ,sb-face))))
+ `(speedbar-selected-face                ((t (:inherit default
+                                                       :height ,sb-height
+                                                       :family ,sb-face))))
+ `(speedbar-separator-face               ((t (:inherit default
+                                                       :height ,sb-height
+                                                       :family ,sb-face))))
+ `(speedbar-tag-face                     ((t (:inherit default
+                                                       :height ,sb-height
+                                                       :family ,sb-face))))
  `(speedbar-highlight-face               ((t (:inherit lazy-highlight))))
- `(tex-math                              ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight bold :width normal ))))
- `(tex-verbatim                          ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant italic :weight normal :width normal ))))
+ `(tex-math                              ((t (:inherit default))))
+ `(tex-verbatim                          ((t (:inherit default))))
  ;`(trailing-whitespace                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-brace-face                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-command-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-current-workgroup-face             ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-divider-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-filename-face                      ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-frapme-face                         ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-message-face                       ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-mode-line-face                     ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-other-workgroup-face               ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(wg-previous-workgroup-face            ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
- `(widget-button-pressed                 ((((min-colors 88) (class color)) (:inherit widget-button))))
- `(widget-documentation                  ((((class color) (background ,bgr)) (:inherit default))))
- `(bm-face                               ((((class color) (background ,bgr)))))
- `(bm-fringe-face                        ((((class color) (background ,bgr)) (:foreground ,bm-fg :background ,bm-bg))))
- `(bm-fringe-persistent-face             ((((class color) (background ,bgr)) (:foreground ,bm-fg :background ,bm-bg))))
- `(bm-persistent-face                    ((((class color) (background ,bgr)) (:inherit default))))
+ `(wg-brace-face                         ((t (:inherit))))
+ `(wg-command-face                       ((t (:inherit))))
+ `(wg-current-workgroup-face             ((t (:inherit))))
+ `(wg-divider-face                       ((t (:inherit))))
+ `(wg-filename-face                      ((t (:inherit))))
+ `(wg-frapme-face                        ((t (:inherit default))))
+ `(wg-message-face                       ((t (:inherit default))))
+ `(wg-mode-line-face                     ((t (:inherit default))))
+ `(wg-other-workgroup-face               ((t (:inherit default))))
+ `(wg-previous-workgroup-face            ((t (:inherit default))))
+ `(widget-button-pressed                 ((t (:inherit widget-button))))
+ `(widget-documentation                  ((t (:inherit default))))
+ `(bm-face                               ((t (:inherit default))))
+ `(bm-fringe-face                        ((t (:foreground ,bm-fg
+                                                          :background ,bm-bg))))
+ `(bm-fringe-persistent-face             ((t (:foreground ,bm-fg
+                                                          :background ,bm-bg))))
+ `(bm-persistent-face                    ((t (:inherit default))))
  `(mm/master-face                        ((t (:inherit region))))
  `(mm/mirror-face                        ((t (:inherit region))))
  `(font-latex-bold-face                  ((t (:inherit bold))))
@@ -386,8 +467,9 @@
  `(font-latex-superscript-face           ((t (:inherit normal))))
  `(font-latex-verbatim-face              ((t (:inherit font-lock-string-face))))
  `(font-latex-warning-face               ((t (:inherit font-lock-warning-face))))
- `(preview-face                          ((t (:inherit default :stipple nil :background ,auctex-preview-bg   :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal))))
-  `(compilation                           ((t (:inherit nil))))
+ `(preview-face                          ((t (:inherit default
+                                                       :background ,auctex-preview-bg))))
+ `(compilation                           ((t (:inherit nil))))
  `(compilation-enter-directory           ((t (:inherit nil))))
  `(compilation-error                     ((t (:inherit nil))))
  `(compilation-info                      ((t (:inherit nil))))
@@ -400,37 +482,71 @@
  `(compilation-mode-line-fail            ((t (:inherit nil))))
  `(compilation-mode-line-run             ((t (:inherit nil))))
  `(compilation-warning                   ((t (:inherit nil))))
-`(compilation-column                    ((t (:inherit nil))))
- `(hi-blue-b                             ((t (:inherit default :background ,hi-blu :weight bold))))
- `(hi-green                              ((t (:inherit default :background ,hi-grn))))
- `(hi-green-b                            ((t (:inherit default :background ,hi-grn :weight bold))))
- `(hi-pink                               ((t (:inherit default :background ,hi-pnk))))
- `(hi-red-b                              ((t (:inherit default :background ,hi-red :weight bold))))
- `(hi-yellow                             ((t (:inherit default :background ,hi-yllw))))
- `(ediff-current-diff-A                  ((t (:inherit default :background ,ediff-bg))))
- `(ediff-current-diff-Ancestor           ((t (:inherit default :background ,ediff-bg))))
- `(ediff-current-diff-B                  ((t (:inherit default :background ,ediff-bg))))
- `(ediff-current-diff-C                  ((t (:inherit default :background ,ediff-bg))))
- `(ediff-even-diff-A                     ((t (:inherit default :background ,ediff-bg))))
- `(ediff-even-diff-Ancestor              ((t (:inherit default :background ,ediff-bg))))
- `(ediff-even-diff-B                     ((t (:inherit default :background ,ediff-bg))))
- `(ediff-even-diff-C                     ((t (:inherit default :background ,ediff-bg))))
- `(ediff-fine-diff-A                     ((t (:inherit default :background ,ediff-bg))))
- `(ediff-fine-diff-Ancestor              ((t (:inherit default :background ,ediff-bg))))
- `(ediff-fine-diff-B                     ((t (:inherit default :background ,ediff-bg))))
- `(ediff-fine-diff-C                     ((t (:inherit default :background ,ediff-bg))))
- `(ediff-odd-diff-A                      ((t (:inherit default :background ,ediff-bg))))
- `(ediff-odd-diff-Ancestor               ((t (:inherit default :background ,ediff-bg))))
- `(ediff-odd-diff-B                      ((t (:inherit default :background ,ediff-bg))))
- `(ediff-odd-diff-C                      ((t (:inherit default :background ,ediff-bg))))
- `(diff-index                            ((t (:inherit default :background ,ediff-bg))))
- `(diff-marked                           ((t (:inherit default :background ,ediff-bg))))
- `(diff-mark                             ((t (:inherit default :background ,ediff-bg))))
- `(diff-function                         ((t (:inherit default :weight bold))))
- `(diff-header                           ((t (:inherit default :weight bold))))
- `(diff-hunk-header                      ((t (:inherit default :weight bold))))
- `(diff-index                            ((t (:inherit default :weight bold))))
- `(diff-file-header                      ((t (:inherit default :weight bold))))
+ `(compilation-column                    ((t (:inherit nil))))
+ `(hi-blue-b                             ((t (:inherit default
+                                                       :background ,hi-blu
+                                                       :weight bold))))
+ `(hi-green                              ((t (:inherit default
+                                                       :background ,hi-grn))))
+ `(hi-green-b                            ((t (:inherit default
+                                                       :background ,hi-grn
+                                                       :weight bold))))
+ `(hi-pink                               ((t (:inherit default
+                                                       :background ,hi-pnk))))
+ `(hi-red-b                              ((t (:inherit default
+                                                       :background ,hi-red
+                                                       :weight bold))))
+ `(hi-yellow                             ((t (:inherit default
+                                                       :background ,hi-yllw))))
+ `(ediff-current-diff-A                  ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-current-diff-Ancestor           ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-current-diff-B                  ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-current-diff-C                  ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-even-diff-A                     ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-even-diff-Ancestor              ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-even-diff-B                     ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-even-diff-C                     ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-fine-diff-A                     ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-fine-diff-Ancestor              ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-fine-diff-B                     ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-fine-diff-C                     ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-odd-diff-A                      ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-odd-diff-Ancestor               ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-odd-diff-B                      ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(ediff-odd-diff-C                      ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(diff-index                            ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(diff-marked                           ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(diff-mark                             ((t (:inherit default
+                                                       :background ,ediff-bg))))
+ `(diff-function                         ((t (:inherit default
+                                                       :weight bold))))
+ `(diff-header                           ((t (:inherit default
+                                                       :weight bold))))
+ `(diff-hunk-header                      ((t (:inherit default
+                                                       :weight bold))))
+ `(diff-index                            ((t (:inherit default
+                                                       :weight bold))))
+ `(diff-file-header                      ((t (:inherit default
+                                                       :weight bold))))
+ ;; MARKER : left off here
  `(diff-indicator-added                  ((t (:inherit default :foreground ,ediff-bg))))
  `(diff-indicator-changed                ((t (:inherit default :background ,ediff-bg))))
  `(diff-indicator-removed                ((t (:inherit default :background ,ediff-bg))))
