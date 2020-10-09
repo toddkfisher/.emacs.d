@@ -29,7 +29,7 @@
       hl-ln              "gray12"
       ;;hl-ln-underline    t
       modeln-bg          "sandy brown"
-      modeln-fg          "black"
+      modeln-fg          "gray20"
       modeln-inactive-fg "light slate gray"
       modeln-inactive-bg "gray20"
       modeln-outline     "gray"
@@ -46,8 +46,8 @@
       bm-fg              "white"
       bm-bg              isrch-bg
       par-match-fg       "purple"
-      ;par-match-bg       "steel blue"
-      par-match-wgt      'normal
+      par-match-bg       bg
+      par-match-wgt      'bold
       lnum-fg            fl-comment
       lnum-bg            modeln-inactive-bg
       auctex-preview-bg  "DodgerBlue3"
@@ -60,6 +60,7 @@
       pmpt-slant         'normal
       pmpt-wgt           'bold
       ediff-bg           "gray20"
+      hexl-ascii         fl-string
       wrn                "yellow2"
       crs-fg             fg
       crs-bg             "white"
@@ -79,6 +80,48 @@
 (custom-theme-set-faces
  'tkf-dark
  `(default                               ((t (:inherit nil
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(git-gutter:added                      ((t (:inherit default
+                                                       :background ,bm-bg
+                                                       :foreground ,modeln-fg))))
+ `(git-gutter:deleted                    ((t (:inherit default
+                                                       :background ,bm-bg
+                                                       :foreground ,modeln-fg))))
+ `(git-gutter:modified                   ((t (:inherit default
+                                                       :background ,bm-bg
+                                                       :foreground ,modeln-fg))))
+ `(git-gutter:separator                  ((t (:inherit default
+                                                       :background ,bm-bg
+                                                       :foreground ,modeln-fg))))
+ `(git-gutter:unchanged                  ((t (:inherit default
+                                                       :background ,bm-bg
+                                                       :foreground ,modeln-fg))))
+ `(imenu-list-entry-face                 ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(imenu-list-entry-face-0               ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(imenu-list-entry-face-1               ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(imenu-list-entry-face-2               ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(imenu-list-entry-face-3               ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(imenu-list-entry-subalist-face-0      ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,org1))))
+ `(imenu-list-entry-subalist-face-1      ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(imenu-list-entry-subalist-face-2      ((t (:inherit default
+                                                       :background ,bg
+                                                       :foreground ,fg))))
+ `(imenu-list-entry-subalist-face-3      ((t (:inherit default
                                                        :background ,bg
                                                        :foreground ,fg))))
  `(error                                 ((t (:foreground ,err))))
@@ -130,6 +173,8 @@
  `(makefile-space                        ((t (:inherit default
                                                        :background ,wrn
                                                        :foreground ,wrn))))
+ `(hexl-ascii-region                     ((t (:inherit default
+                                                       :foreground ,hexl-ascii))))
  `(term-color-black                      ((t (:inherit default))))
  `(term-color-blue                       ((t (:inherit default))))
  `(term-color-cyan                       ((t (:inherit default))))
@@ -212,7 +257,7 @@
  `(font-lock-variable-name-face          ((t (:foreground ,fl-var
                                               :weight ,fl-var-wgt))))
  `(font-lock-warning-face                ((t (:inherit error))))
- `(fringe                                ((t (:background ,modeln-inactive-bg
+ `(fringe                                ((t (:background ,bg
                                                           :foreground ,modeln-inactive-fg))))
  `(gnus-button                           ((t (:inherit default))))
  `(gnus-cite-1                           ((t (:inherit default))))
@@ -287,7 +332,7 @@
  `(gnus-summary-normal-undownloaded      ((t (:inherit default))))
  `(gnus-summary-normal-unread            ((t (:inherit default))))
  `(gnus-summary-selected                 ((t (:inherit default))))
- `(header-line                           ((t (:inherit default))))
+ `(header-line                           ((t (:inherit default :underline nil))))
  `(help-argument-name                    ((t (:inherit default
                                                        :slant italic))))
  `(highlight                             ((t (:inherit default
@@ -405,27 +450,28 @@
  `(region                                ((t (:background ,rgn-bg))))
  `(secondary-selection                   ((t (:inherit region))))
  `(show-paren-match                      ((t (:weight ,par-match-wgt
-                                                      :foreground ,par-match-fg))))
+                                                      :foreground ,par-match-fg
+                                                      :background ,par-match-bg))))
  `(show-paren-mismatch                   ((t (:foreground ,paren-mismatch))))
- `(speedbar-button-face                  ((t (:inherit default
-                                                       :height ,sb-height
-                                                       :family ,sb-face))))
- `(speedbar-directory-face               ((t (:inherit default
-                                                       :height ,sb-height
-                                                       :family ,sb-face))))
- `(speedbar-file-face                    ((t (:inherit default
-                                                       :height ,sb-height
-                                                       :family ,sb-face))))
- `(speedbar-selected-face                ((t (:inherit default
-                                                       :height ,sb-height
-                                                       :family ,sb-face))))
- `(speedbar-separator-face               ((t (:inherit default
-                                                       :height ,sb-height
-                                                       :family ,sb-face))))
- `(speedbar-tag-face                     ((t (:inherit default
-                                                       :height ,sb-height
-                                                       :family ,sb-face))))
- `(speedbar-highlight-face               ((t (:inherit lazy-highlight))))
+;; `(speedbar-button-face                  ((t (:inherit default
+;;                                                       :height ,sb-height
+;;                                                       :family ,sb-face))))
+;; `(speedbar-directory-face               ((t (:inherit default
+;;                                                       :height ,sb-height
+;;                                                       :family ,sb-face))))
+;; `(speedbar-file-face                    ((t (:inherit default
+;;                                                       :height ,sb-height
+;;                                                       :family ,sb-face))))
+;; `(speedbar-selected-face                ((t (:inherit default
+;;                                                       :height ,sb-height
+;;                                                       :family ,sb-face))))
+;; `(speedbar-separator-face               ((t (:inherit default
+;;                                                       :height ,sb-height
+;;                                                       :family ,sb-face))))
+;; `(speedbar-tag-face                     ((t (:inherit default
+;;                                                       :height ,sb-height
+;;                                                       :family ,sb-face))))
+;; `(speedbar-highlight-face               ((t (:inherit lazy-highlight))))
  `(tex-math                              ((t (:inherit default))))
  `(tex-verbatim                          ((t (:inherit default))))
  ;`(trailing-whitespace                   ((t (:inherit default :stipple nil :background ,bg :foreground ,fg :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal ))))
@@ -559,7 +605,7 @@
  `(vr/group-0                            ((t (:inherit default :background ,grp-0))))
  `(vr/group-1                            ((t (:inherit default :background ,grp-1))))
  `(vr/group-2                            ((t (:inherit default :background ,grp-2))))
- `(vr/match-0                            ((t (:inherit default :background ,isrch-bg))))
+ `(vr/match-0                            ((t (:inherit vr/group-0))))
  `(vr/match-1                            ((t (:inherit default :background ,lzy-hi))))
  `(sh-heredoc                            ((t (:inherit default :foreground ,fl-string))))
  `(sh-quoted-exec                        ((t (:inherit default :foreground ,fl-string))))

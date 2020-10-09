@@ -2,7 +2,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
-(load "~/.emacs.d/site-specific.el")
+(load "~/site-specific.el")
 
 ;;* Requires/includes
 
@@ -40,7 +40,24 @@
 (use-package fill-column-indicator
   :ensure t
   :init
-  (setq-default fill-column 132))
+  (setq-default fill-column 82))
+
+(use-package git-gutter
+  :ensure t
+  :init
+  (global-git-gutter-mode t)
+  :bind
+  (("C-c <up>" . git-gutter:previous-diff)
+   ("C-c <down>" . git-gutter:next-diff)))
+
+(use-package form-feed
+  :ensure t
+  :init
+  (add-hook 'emacs-lisp-mode-hook (lambda () (form-feed-mode t)))
+  (add-hook 'c-mode-common-hook  (lambda ()
+                                   (form-feed-mode t)))
+  (setq-default form-feed-line-width (- fill-column 1)))
+
 
 (use-package window-numbering
   :ensure t
@@ -50,11 +67,6 @@
 (use-package iedit
   :ensure t)
 
-(use-package geiser
-  :ensure t
-  :init
-  (setq geiser-active-implementations '(guile)))
-
 (use-package windresize
   :ensure t
   :bind
@@ -63,12 +75,14 @@
 (use-package magit
   :ensure t)
 
-(use-package dired-sidebar
+(use-package dired
+  :init
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+(use-package ace-jump-mode
   :ensure t
   :bind
-  (("C-x C-n" . dired-sidebar-toggle-sidebar))
-  :custom
-  (dired-sidebar-one-instance-p t))
+  (("C-c j" . ace-jump-mode)))
 
 ;; TODO: figure out why python-mode cannot be loaded here.
 ;; (use-package python-mode
@@ -130,15 +144,27 @@
    ("M-["   . bm-previous)
    ("C-c m" . bm-toggle)))
 
-(use-package idomenu
-  :ensure t
-  :bind
-  (("C-c i" . idomenu)))
-
 (use-package expand-region
   :ensure t
   :bind
   (("C-=" . er/expand-region)))
+
+
+
+;; just go with something simple that works in all conceivable situations
+(defun tkf-open-note ()
+  (interactive "")
+  (ido-find-file-in-dir org-directory))
+
+(defun tkf-insert-file-link ()
+  (interactive "")
+  (let ((file-name (read-file-name "File to link:" org-directory))
+        (title (read-from-minibuffer "Name (enter for none):")))
+    (if (equal (string-trim title) "")
+        (insert (concat "[[" file-name "]]"))
+      (insert (concat "[[file:" file-name "][" title "]]")))))
+
+
 
 (use-package org
   :init
@@ -146,27 +172,33 @@
   (setq-default org-export-html-postamble nil)
   (setq org-hide-leading-stars t)
   (setq org-log-done 'time)   ; insert a timestamp when org item marked DONE
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
-  (setq org-default-diary-file (concat org-directory "/diary.org"))
-  (setq org-default-log-file (concat org-directory "/log.org"))
-  (setq org-file-list '("notes.org" "diary.org" "log.org"))
-  (setq org-agenda-files `(,org-default-notes-file))
+  ;;(setq org-default-diary-file (concat org-directory "/diary.org"))
+  ;;(setq org-default-checkitem-file (concat org-directory "/checkitem.org"))
+  ;;(setq org-default-log-file (concat org-directory "/log.org"))
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
   (setq org-todo-keywords
        '((sequence "TODO" "WRITTEN" "TESTED" "|" "DONE" "FIX")))
   ;;(setq org-remember-default-headline nil)
-  (setq-default org-capture-templates
-        '(("n"    "Note"  entry     (file+headline org-default-notes-file "Notes")
-           "* %?")
-          ("t"    "Todo"  checkitem (file+olp+datetree org-default-notes-file "Todos")
-           "[ ] %?")
-          ("d"    "Diary" entry     (file+olp+datetree org-default-diary-file "Diary")
-           "* %U %?")
-          ;("l"    "Log"
-          ))
+  ;;(setq-default org-capture-templates
+  ;;              '(("n" "Note" plain
+  ;;                 ;;(file tkf-new-note-filepath)
+  ;;                 (file "/home/todd/Documents/Notes/test.org")
+  ;;                 "* %?")
+  ;;                ("t" "Todo"  checkitem
+  ;;                 (file+olp+datetree org-default-checkitem-file "Checkitems")
+  ;;                 "[ ] %?")
+  ;;        ;; ("d"    "Diary" entry     (file+olp+datetree org-default-diary-file "Diary")
+  ;;        ;;  "* %U %?")
+  ;;        ;;("T"    "TEST"  plain     (file (gen-file
+  ;;        ;("l"    "Log"
+  ;;        ))
   :bind
-  (("C-c o" . tkf-org-open-file)
-   ("C-c n" . org-capture)))
+  (("C-c o" . tkf-open-note)
+   ("C-c L" . tkf-insert-file-link)))
+   ;;("C-c n" . org-capture)))  ;; never used org-capture
+
+(use-package org-journal
+  :ensure t)
 
 (defun imenu-lisp ()
   (add-to-list 'imenu-generic-expression
@@ -178,9 +210,9 @@
 
 (defun imenu-emacs-lisp ()
   (add-to-list 'imenu-generic-expression
-               '("use-package" "^\\s-*(use-package\\s-*\\(.+\\)$" 1))
+               '("Sect" "^\\s-*;;\\*\\s-*\\(.*\\)$" 1))
   (add-to-list 'imenu-generic-expression
-               '("Sect" "^\\s-*;;\\*\\s-*\\(.*\\)$" 1)))
+               '("use-package" "^\\s-*(use-package\\s-*\\(.+\\)$" 1)))
 
 (defun imenu-c ()
   (add-to-list 'imenu-generic-expression
@@ -203,6 +235,8 @@
 (use-package imenu
   :init
   (setq imenu-auto-rescan t)
+  :bind
+  (("C-c i" . imenu))
   :hook
   (lisp-mode . imenu-lisp)
   (emacs-lisp-mode . imenu-emacs-lisp)
@@ -252,7 +286,7 @@
   (setq ido-auto-merge-delay-time 99999)
   (setq ido-enable-flex-matching t)
   (setq ido-everywhere t)
-  (setq ido-max-prospects 4)
+  (setq ido-max-prospects 10)
   :config
   (ido-mode (quote both)))
 
@@ -285,6 +319,11 @@
   (add-hook 'Info-mode-hook
             (lambda ()
               (setq Info-additional-directory-list '("/home/todd/info")))))
+
+(use-package slime
+  :ensure t
+  :init
+  (setq inferior-lisp-program "/usr/bin/ecl"))
 
 ;; Unfortunately cua mode must be enabled to use its awesome rectangle commands
 ;; We just disable the cua keys here and pretend that it doesn't exist.
@@ -324,47 +363,6 @@
   (setq remember-leader-text "--------------- ")
   (setq remember-mode-hook (quote (org-remember-apply-template))))
 
-;;* Misc initialization
-
-(server-start)
-;; work around the bogus "-remote" flag specified by browse-url-firefox
-(setq browse-url-browser-function 'browse-url-generic)
-(setq-default indent-tabs-mode nil)
-(setq scroll-step 1)
-(setq-default tab-width 2)
-(setq compilation-scroll-output t)
-(column-number-mode 2)
-(setq scroll-preserve-screen-position nil)
-(setq scroll-conservatively 10000)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
-(setq mouse-wheel-progressive-speed t)
-(put 'set-goal-column 'disabled nil)
-(put 'downcase-region 'disabled nil)
-(put 'scroll-left 'disabled nil)
-(setq-default ring-bell-function 'ignore)             ; God I hate that flashing
-(setq initial-scratch-message nil)
-(setq-default cursor-type 'bar)
-(fringe-mode '(15 . 15))
-(setq-default max-comment-column 120)
-(defalias 'list-buffers 'ibuffer)
-(add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
-(set-fringe-mode 10)
-(setq-default indicate-buffer-boundaries '((top . left) (bottom . right)))
-(electric-indent-mode t)
-(recentf-mode 1)
-(winner-mode t)
-(setq-default truncate-lines t)
-(setq make-backup-files t
-      backup-by-copying t      ; don't clobber symlinks
-      backup-directory-alist
-      '(("." . ".backup"))
-      delete-old-versions t
-      ;kept-new-versions 6
-      kept-old-versions 10
-      version-control t)
-(defalias 'yes-or-no-p 'y-or-n-p)
-(setq tags-revert-without-query 1)
-
 ;;* Vars set by 'custom'
 ;; TODO: someday move all of this crap out into 'use-package' blocks where it belongs.
 (custom-set-variables
@@ -372,14 +370,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(Man-notify-method (quote pushy))
- '(align-text-modes (quote (text-mode outline-mode fundamental-mode)))
+ '(Man-notify-method 'pushy)
+ '(align-text-modes '(text-mode outline-mode fundamental-mode))
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(ansi-term-color-vector
    [unspecified "#1b181b" "#ca402b" "#918b3b" "#bb8a35" "#516aec" "#7b59c0" "#516aec" "#ab9bab"] t)
+ '(auto-dim-other-buffers-mode nil)
  '(auto-hscroll-mode t)
  '(beacon-color "#ff9da4")
  '(blink-cursor-blinks 0)
@@ -388,11 +387,11 @@
  '(blink-cursor-mode t)
  '(blink-matching-delay 0)
  '(byte-compile-delete-errors t)
- '(byte-compile-warnings (quote (not cl-functions)))
+ '(byte-compile-warnings '(not cl-functions))
  '(column-number-mode t)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
- '(compilation-message-face (quote default))
+ '(compilation-message-face 'default)
  '(compilation-scroll-output t)
  '(compile-command "./build.sh")
  '(cua-global-mark-cursor-color "#2aa198")
@@ -400,94 +399,120 @@
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
-   (quote
-    ("479eaf3a52999cf6149d958aea6dc321f6124441341ae276181cca226a1ff891" "3fc8191e0db6a9cbbc7ed52d1201bb948ab2b5ecb82a3d9044ab60252f394d67" "76ab82bb457ffe05c89f3fb925c017a7b4dda10a07523e937ea15b0e4ea497b6" "c9206fd8b9b4f4969102201a627d260c82cf1ce7e26dda1a2a51617aa4f03fa0" "765cca79196ad45df1ad89d6746dbe12a5055d0a0a128a4251504b6af5e2aa00" "03a12775e0f940de84902ed75a36de55b179fcb454827f05c274f409ac4e1de1" "bfd7765141d012e8c2566bc2d03f8198438297157dfec59ff2c66fc4983c229e" "e873fb4809c80706a0d789cc2a08b412b20d29d07c2b04c61849a80ba7b760a0" "ba7ea9b452077d6cdf38775fe1b4ce52a01ebe1965ef6ae900355abbc823724b" "5b672901298bf0107eb514847adcb15a4b368e9330998aaa9137f0c438d5775e" "ee2a93650207d9973e58ed39416488abb0ccceb75021734d2a2e372a280c94db" "7f982b98b9909862f0ea8f49132b20e7e5ed0f2f8de10dd464c05047fcc197aa" "00327567e30a5e5506a725a68dd71f694386d7ffb9f36b721022811af7ba46a3" "91935fa44b3edc7ed1e4f673e89c3198275e2caa1a3e5c21bfcb23cf28b13070" "bd2970981c4ec44b443284b64c0bff2e9e0a3c879fd88f1dc2ba2f34be1dfa49" "e8cef8258baa4527c2a8cefed287437c110436126a320629c0da7c321b2d8b2e" "e58fbefb33317cd7172fe3a02ab7eb7ae7d3dcd8930c3e401c291a77243591d9" "6fe36528adf16d1e96a93bc23736a9b6392d2a596e61f1df7d5683179a9ba78c" "242527ce24b140d304381952aa7a081179a9848d734446d913ca8ef0af3cef21" "3f44e2d33b9deb2da947523e2169031d3707eec0426e78c7b8a646ef773a2077" "44247f2a14c661d96d2bff302f1dbf37ebe7616935e4682102b68c0b6cc80095" default)))
+   '())
  '(default-input-method "sgml")
- '(default-justification (quote full))
+ '(default-justification 'full)
+ '(deft-use-filename-as-title nil)
+ '(deft-use-filter-string-for-filename t)
  '(desktop-save nil)
  '(desktop-save-mode nil)
  '(diff-command "diff")
  '(diff-switches "-C 5")
+ '(dired-sidebar-one-instance-p t)
+ '(doom-modeline-mode t)
  '(fancy-splash-image nil)
  '(fci-rule-color "#383838")
- '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
- '(font-lock-global-modes (quote (not speedbar-mode)))
+ '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
+ '(font-lock-global-modes '(not speedbar-mode))
  '(frame-background-mode nil)
  '(grep-command "grep -in")
- '(grep-find-command (quote ("find . -type f -exec grep /dev/null {} +" . 26)))
- '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
+ '(grep-find-command '("find . -type f -exec grep /dev/null {} +" . 26))
+ '(highlight-changes-colors '("#d33682" "#6c71c4"))
  '(highlight-symbol-foreground-color "#586e75")
  '(highlight-tail-colors
-   (quote
-    (("#eee8d5" . 0)
+   '(("#eee8d5" . 0)
      ("#B4C342" . 20)
      ("#69CABF" . 30)
      ("#69B7F0" . 50)
      ("#DEB542" . 60)
      ("#F2804F" . 70)
      ("#F771AC" . 85)
-     ("#eee8d5" . 100))))
+     ("#eee8d5" . 100)))
  '(hl-bg-colors
-   (quote
-    ("#DEB542" "#F2804F" "#FF6E64" "#F771AC" "#9EA0E5" "#69B7F0" "#69CABF" "#B4C342")))
+   '("#DEB542" "#F2804F" "#FF6E64" "#F771AC" "#9EA0E5" "#69B7F0" "#69CABF" "#B4C342"))
  '(hl-fg-colors
-   (quote
-    ("#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3")))
- '(hl-paren-colors
-   (quote
-    ("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11")))
+   '("#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3"))
+ '(hl-paren-colors '("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11"))
+ '(hl-todo-keyword-faces
+   '(("HOLD" . "#e5f040")
+     ("TODO" . "#feacd0")
+     ("NEXT" . "#b6a0ff")
+     ("THEM" . "#ed92f8")
+     ("PROG" . "#00d3d0")
+     ("OKAY" . "#4ae8fc")
+     ("DONT" . "#58dd13")
+     ("FAIL" . "#ff8059")
+     ("DONE" . "#44bc44")
+     ("NOTE" . "#f0ce43")
+     ("KLUDGE" . "#eecc00")
+     ("HACK" . "#eecc00")
+     ("TEMP" . "#ffcccc")
+     ("FIXME" . "#ff9977")
+     ("XXX+" . "#f4923b")
+     ("REVIEW" . "#6ae4b9")
+     ("DEPRECATED" . "#aaeeee")))
  '(hscroll-margin 0)
  '(hscroll-step 5)
+ '(ibuffer-deletion-face 'dired-flagged)
+ '(ibuffer-filter-group-name-face 'dired-mark)
+ '(ibuffer-marked-face 'dired-marked)
+ '(ibuffer-title-face 'dired-header)
  '(inhibit-startup-echo-area-message t)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
  '(isearch-lazy-highlight t)
+ '(jdee-db-active-breakpoint-face-colors (cons "#161a2a" "#82aaff"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#161a2a" "#c3e88d"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#161a2a" "#444a73"))
  '(kill-ring-max 200)
  '(kill-whole-line t)
  '(lazy-highlight-cleanup t)
  '(line-number-mode nil)
  '(linum-format "%-4d")
+ '(lsp-ui-doc-border "#93a1a1")
  '(lua-always-show nil t)
  '(lua-default-application "lua5.3")
  '(lua-indent-level 2 t)
  '(magit-diff-use-overlays nil)
  '(menu-bar-mode nil)
- '(message-default-charset (quote iso-8859-1))
+ '(message-default-charset 'iso-8859-1)
  '(mouse-wheel-mode t)
  '(nrepl-message-colors
-   (quote
-    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
+ '(objed-cursor-color "#ff757f")
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
-   (quote
-    (iedit all-the-icons-dired all-the-icons dired-sidebar org-bullets geiser window-numbering windresize ido-occur rainbow-mode fill-column-indicator rectangle-utils imenu-anywhere nasm-mode markdown-mode+ ido-vertical-mode syntax-subword idomenu ido-ubiquitous ido-select-window use-package bm move-text smex magit multiple-cursors visual-regexp expand-region peg)))
- '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+   '(iedit org-journal git-gutter ace-jump-mode slime graphviz-dot-mode form-feed all-the-icons-dired all-the-icons org-bullets window-numbering windresize ido-occur fill-column-indicator rectangle-utils imenu-anywhere nasm-mode markdown-mode+ ido-vertical-mode syntax-subword ido-ubiquitous ido-select-window use-package bm move-text smex magit multiple-cursors visual-regexp expand-region peg))
+ '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(python-indent-offset 2)
  '(python-shell-interpreter "python3")
- '(recentf-exclude (quote ("session.*")))
+ '(recentf-exclude '("session.*"))
  '(recentf-mode t)
  '(ruler-mode-show-tab-stops nil)
+ '(rustic-ansi-faces
+   ["#212337" "#ff757f" "#c3e88d" "#ffc777" "#82aaff" "#c099ff" "#b4f9f8" "#c8d3f5"])
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1)
  '(scroll-preserve-screen-position t)
  '(scroll-step 1)
- '(send-mail-function (quote mailclient-send-it))
+ '(send-mail-function 'mailclient-send-it)
  '(shift-select-mode nil)
  '(show-paren-mode t)
- '(show-paren-style (quote parenthesis))
+ '(show-paren-style 'parenthesis)
  '(show-paren-when-point-inside-paren t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
  '(speedbar-directory-unshown-regexp "^$")
- '(speedbar-fetch-etags-arguments (quote ("-I" "-o" "-")))
- '(speedbar-ignored-modes (quote (fundamental-mode Info-mode)))
+ '(speedbar-fetch-etags-arguments '("-I" "-o" "-"))
+ '(speedbar-fetch-etags-command "etags")
+ '(speedbar-ignored-modes '(fundamental-mode Info-mode))
  '(speedbar-tag-group-name-minimum-length 25)
  '(speedbar-tag-regroup-maximum-length 32)
  '(speedbar-tag-split-minimum-length 10)
  '(speedbar-update-flag t)
- '(speedbar-use-imenu-flag nil)
+ '(speedbar-use-imenu-flag t)
  '(speedbar-verbosity-level 0)
  '(sr-speedbar-auto-refresh nil)
  '(sr-speedbar-default-width 20 t)
@@ -498,12 +523,11 @@
  '(term-default-fg-color "#657b83")
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
- '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(uniquify-buffer-name-style 'forward nil (uniquify))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-background-mode nil)
  '(vc-annotate-color-map
-   (quote
-    ((20 . "#BC8383")
+   '((20 . "#BC8383")
      (40 . "#CC9393")
      (60 . "#DFAF8F")
      (80 . "#D0BF8F")
@@ -520,12 +544,11 @@
      (300 . "#7CB8BB")
      (320 . "#8CD0D3")
      (340 . "#94BFF3")
-     (360 . "#DC8CC3"))))
+     (360 . "#DC8CC3")))
  '(vc-annotate-very-old-color "#DC8CC3")
  '(visible-bell nil)
  '(weechat-color-list
-   (quote
-    (unspecified "#fdf6e3" "#eee8d5" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#657b83" "#839496")))
+   '(unspecified "#fdf6e3" "#eee8d5" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#657b83" "#839496"))
  '(which-key-mode t)
  '(window-divider-default-right-width 1)
  '(window-divider-mode t)
@@ -601,16 +624,24 @@
   (push-mark (point) t nil)
   (message "Pushed mark to ring"))
 
-;;------------------------------------------------------------------------------
 (defun jump-to-mark ()
   "Jumps to the local mark, respecting the `mark-ring' order. This is the same as using \\[set-mark-command] with the prefix argument."
   (interactive)
   (set-mark-command 1))
 
-;;------------------------------------------------------------------------------
 (defun tkf-make-frame ()
   (interactive)
   (make-frame `((font . ,default-font))))
+
+;; From:
+;; https://zhangda.wordpress.com/2009/05/21/customize-emacs-automatic-scrolling-and-stop-the-cursor-from-jumping-around-as-i-move-it/
+(defun stop-cursor-jump ()
+  (setq scroll-margin 1
+        scroll-conservatively 0
+        scroll-up-aggressively 0.01
+        scroll-down-aggressively 0.01)
+  (setq-default scroll-up-aggressively 0.01
+                scroll-down-aggressively 0.01))
 
 ;;------------------------------------------------------------------------------
 ;; From stackoverflow
@@ -838,8 +869,7 @@ Version 2015-04-09"
 
 (defun tkf-org-open-file ()
   (interactive)
-  (let ((f (ido-completing-read "ORG:" org-file-list)))
-    (find-file (concat org-directory "/" f))))
+  (find-file (read-file-name "" org-directory)))
 
 ;;* Misc. keybindings
 (global-set-key (kbd "C-x k")           'kill-this-buffer)
@@ -854,10 +884,10 @@ Version 2015-04-09"
                                           (let ((col (current-column)))
                                             (kill-whole-line)
                                             (move-to-column col t))))
-(global-set-key (kbd "C-c =")           'tkf-insert-divider-comment)
+(global-set-key (kbd "C-c =")           'tkf-in-csert-divider-comment)
 (global-set-key (kbd "C-c c")           'copy-whole-line-trim)
 (global-set-key (kbd "C-c x")           'kill-whole-line-trim)
-(global-set-key (kbd "C-c j")           (lambda () (interactive) (join-line -1)))
+;(global-set-key (kbd "C-c l")           (lambda () (interactive) (join-line -1)))
 (global-set-key (kbd "C-c p")           'toggle-sticky-buffer-window)
 (global-set-key (kbd "C-c t")           'my-ido-find-tag)
 (global-set-key (kbd "C-c u")           (lambda () (interactive)
@@ -916,6 +946,49 @@ Version 2015-04-09"
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+
+;;* Misc initialization
+
+(server-start)
+;; work around the bogus "-remote" flag specified by browse-url-firefox
+(setq browse-url-browser-function 'browse-url-generic)
+(setq-default indent-tabs-mode nil)
+(setq scroll-step 1)
+(setq-default tab-width 2)
+(setq compilation-scroll-output t)
+(column-number-mode 2)
+(setq scroll-preserve-screen-position nil)
+(setq scroll-conservatively 10000)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed t)
+(put 'set-goal-column 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'scroll-left 'disabled nil)
+(setq-default ring-bell-function 'ignore)             ; God I hate that flashing
+(setq initial-scratch-message nil)
+(setq-default cursor-type 'bar)
+(fringe-mode '(15 . 15))
+(setq-default max-comment-column 120)
+(defalias 'list-buffers 'ibuffer)
+(add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
+(set-fringe-mode 10)
+(setq-default indicate-buffer-boundaries '((top . left) (bottom . right)))
+(electric-indent-mode t)
+(recentf-mode 1)
+(winner-mode t)
+(setq-default truncate-lines t)
+(setq make-backup-files t
+      backup-by-copying t      ; don't clobber symlinks
+      backup-directory-alist
+      '(("." . ".backup"))
+      delete-old-versions t
+      ;kept-new-versions 6
+      kept-old-versions 10
+      version-control t)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq tags-revert-without-query 1)
+(stop-cursor-jump)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
